@@ -13,10 +13,7 @@ const pool = mysql.createPool({
   port: process.env.DB_PORT,
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0,
-  ssl: {
-    ca: fs.readFileSync(path.join(__dirname, "../ca.pem")) // Use absolute path
-  }
+  queueLimit: 0
 });
 
 // Test the database connection
