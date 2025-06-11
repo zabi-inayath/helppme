@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+body {
+  background-color: #fff;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  padding: 0;
+}
+
+.search-bg {
+  background-color: #b3deff;
+  border-radius: 50%;
+  height: 2.7rem;
+  width: 3rem;
+}
+
+.search-bar {
+  bottom: -8%;
+}
+
+.essential-svg {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.essential-svg:hover {
+  transform: translateY(-5px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .header h1 {
+    font-size: 2rem;
+    bottom: 25%; /* Adjust position for smaller screens */
+  }
+
+  .search-bar {
+    width: 90%; /* Wider search bar for mobile */
+    bottom: -8%; /* Adjust position for smaller screens */
+  }
+}

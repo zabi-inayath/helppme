@@ -1,0 +1,595 @@
+/* Import fonts */
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Inter:wght@400&display=swap"); */
+
+
+body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+.dm-sans {
+  font-family: 'DM Sans', sans-serif;
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.appContainer {
+  font-family: 'DM Sans', sans-serif;
+  max-width: 100vw;
+  overflow: hidden; /* Hide overflow */
+  position: relative; /* Helps prevent bottom overflow */
+}
+
+/* .appContainer {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+} */
+
+.header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  padding: 1.5rem 2rem;
+  z-index: 10;
+}
+
+.headerButtons {
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+  padding: 20px 40px;
+  position: relative;
+  right: 40px;
+}
+
+.headerButton {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  font-size: 24.27px;
+  line-height: 29.37px;
+  color: #000000;
+  text-decoration: none;
+}
+
+.headerButton::after {
+  content: "↗";
+  display: inline-block;
+  font-size: 24px;
+  color: #0175f3;
+  margin-left: 4px;
+  position: relative;
+}
+
+.headerButton:hover {
+  color: #000000;
+}
+
+.landingPage {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 2rem;
+  overflow-x: hidden;
+}
+
+.landingContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4rem;
+  position: relative;
+  padding-top: 120px;
+  margin-bottom: 120px;
+}
+
+.Ambur {
+  width: 621px;
+  height: 147px;
+  position: relative;
+  left: 60px;
+  top: 150px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 63px;
+  line-height: 68px;
+  letter-spacing: -0.03em;
+  color: #000000;
+  margin: 0;
+}
+
+.leftContent {
+  flex: 1;
+  position: relative;
+  min-height: 500px;
+}
+
+.rightContent {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+}
+
+.rightContent img {
+  max-width: 100%;
+  height: auto;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.primaryButton,
+.secondaryButton,
+.mobileButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.primaryButton {
+  background-color: #007bff;
+  color: white;
+}
+
+.primaryButton:hover {
+  background-color: #0056b3;
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: #007bff;
+}
+
+.secondaryButton:hover {
+  background-color: #f8f9fa;
+}
+
+.mobileButton {
+  position: relative;
+  top: 200px;
+  left: 91px;
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2.5rem;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-decoration: none;
+  background-color: #0066ff;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.mobileButton::after {
+  content: "↗";
+  display: inline-block;
+  font-size: 24px;
+  top: -3px;
+  margin-left: 4px;
+  position: relative;
+}
+
+.mobileButton:hover {
+  background-color: #0052cc;
+}
+
+/* Media Queries */
+@media (max-width: 968px) {
+  .landingContent {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 8rem;
+  }
+
+  .rightContent {
+    order: -1;
+    margin-top: 60px;
+  }
+
+  .rightContent img {
+    max-width: 80%;
+  }
+
+  .Ambur {
+    width: 100%;
+    left: 0;
+    top: 0;
+    font-size: 48px;
+    line-height: 52px;
+    text-align: center;
+  }
+
+  .mobileButton {
+    top: 40px;
+    left: 0;
+  }
+
+  .headerButtons {
+    top: 20px;
+    right: 0;
+    justify-content: center;
+  }
+
+  .headerButton {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .headerButtons {
+    justify-content: center;
+  }
+
+  .landingPage {
+    padding: 1rem;
+  }
+
+
+  .mobileButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.featuresSection {
+  padding: 120px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 120px;
+  width: 100%;
+  overflow-x: hidden;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.featuresGrid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 100px;
+  padding: 0 20px;
+  position: relative;
+}
+
+.textContent {
+  flex: 1;
+  padding-left: 101px;
+}
+
+.featureText {
+  width: 561px;
+  margin-bottom: 80px;
+}
+
+.featureText h2 {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 43.67px;
+  line-height: 51.08px;
+  letter-spacing: -0.03em;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.featureText p {
+  width: 469px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 28.74px;
+  line-height: 31.02px;
+  letter-spacing: -0.03em;
+  color: #757575;
+}
+
+.mobilePreview {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.mobileImage {
+  max-width: 375px;
+  height: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.vectorLines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: -250px;
+  top: 45px;
+  z-index: 1;
+}
+
+.vectorTop {
+  position: absolute;
+  top: 25%;
+  left: 0;
+}
+
+.vectorBottom {
+  position: absolute;
+  bottom: 35%;
+  left: 0;
+}
+
+.vector1Line{
+  position: relative;
+  top: 250px;
+  right:290px;
+  width: 300px;
+  z-index: 1;
+}
+
+.vectorConnection {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.contactFeaturesSection {
+  padding: 120px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 120px;
+  width: 100%;
+  overflow-x: hidden;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.contactGrid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 100px;
+  padding: 0 20px;
+  position: relative;
+}
+
+.contactPreview {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.contactImage {
+  max-width: 375px;
+  height: auto;
+}
+
+.contactContent {
+  flex: 1;
+  padding-right: 40px;
+  margin-top: 100px;
+}
+
+.contactText {
+  margin-bottom: 80px;
+}
+
+.contactText h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 43.67px;
+  line-height: 51.08px;
+  letter-spacing: -0.03em;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.contactText p {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 28.74px;
+  line-height: 31.02px;
+  letter-spacing: -0.03em;
+  color: #757575;
+}
+
+.vectorConnection {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.vectorLine {
+  position: relative;
+  top: 150px;
+  left: -120px;
+  width: 300px;
+  /* Adjust this value to align with the image */
+}
+.vector1Line {
+   position: relative;
+  top: 205px;
+  right: 145px;
+  width: 415px;
+  height: 245px;
+  z-index: 2;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .featuresGrid {
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  .textContent {
+    padding-left: 0;
+  }
+
+  .featureText {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .featureText p {
+    width: 100%;
+  }
+
+  .mobilePreview {
+    justify-content: center;
+  }
+
+  .vectorLines {
+    display: none;
+  }
+}
+
+/* SOS Features Section */
+.sosFeaturesSection {
+  padding: 120px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 120px;
+  width: 100%;
+  overflow-x: hidden;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sosGrid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 100px;
+  padding: 0 20px;
+  position: relative;
+}
+
+.sosContent {
+  flex: 1;
+  padding-left: 101px;
+  margin-top: 100px;
+}
+
+.sosText {
+  margin-bottom: 80px;
+}
+
+.sosText h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 43.67px;
+  line-height: 51.08px;
+  letter-spacing: -0.03em;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.sosText p {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 28.74px;
+  line-height: 31.02px;
+  letter-spacing: -0.03em;
+  color: #757575;
+}
+
+.sosPreview {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.sosImage {
+  max-width: 375px;
+  height: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Vector connection for SOS section */
+.sosPreview .vectorConnection {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.sosPreview .vectorLine {
+  position: relative;
+  top: 150px;
+  left: -120px;
+  width: 300px;
+}
+
+
+
+.featuresSection,
+.contactFeaturesSection,
+.sosFeaturesSection,
+.enrolPage,
+.donateSection {
+  width: 100%;
+  overflow-x: hidden;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.enrolPage {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 80px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.enrolHeader {
+  text-align: center;
+  margin-bottom: 40px;
+  font-family: DM Sans, sans-serif;
+}
+
+.enrolHeader h1 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 68px;
+  color: #000000;
+  margin-bottom: 16px;
+}
+
+.enrolHeader p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: #757575;
+  max-width: 800px;
+  margin: 0 auto;
+}

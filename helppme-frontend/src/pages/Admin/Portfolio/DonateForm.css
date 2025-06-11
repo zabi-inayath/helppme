@@ -1,0 +1,175 @@
+.donate-section {
+  width: 100%;
+  padding: 60px 0;
+  background-color: #ffffff;
+}
+
+.donate-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.donate-header h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 63px;
+  line-height: 68px;
+  color: #000000;
+  margin-bottom: 16px;
+}
+
+.donate-header p {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: #757575;
+}
+
+.donate-container {
+  width: 80vw;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+  background: #ffffff;
+  border: 3px solid #3269A6;
+  border-radius: 12px;
+}
+
+.donate-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+}
+
+.form-group input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  background-color: #F8F9FA;
+}
+
+.button-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.cancel-btn, .submit-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+.submit-btn {
+  background: #0175F3;
+  border: none;
+  color: #ffffff;
+}
+
+.payment-options {
+  flex: 1;
+  text-align: center;
+}
+
+.payment-options h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.payment-icons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.payment-icons img {
+  height: 40px;
+  width: auto;
+}
+
+.qr-code {
+  text-align: center;
+}
+
+.qr-code img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 16px;
+}
+
+.qr-code p {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #757575;
+  margin-bottom: 8px;
+}
+
+.qr-code h2 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  color: #0175F3;
+}
+
+.amount-input {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: #333;
+  text-align: left;
+  padding-left: 12px !important;
+}
+
+.amount-input:focus {
+  outline: none;
+  border-color: #0175F3 !important;
+  box-shadow: 0 0 0 2px rgba(1, 117, 243, 0.1);
+}
+
+@media (max-width: 1200px) {
+  .donate-container {
+    width: 90vw;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .donate-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .donate-header h1 {
+    font-size: 48px;
+    line-height: 56px;
+  }
+} 

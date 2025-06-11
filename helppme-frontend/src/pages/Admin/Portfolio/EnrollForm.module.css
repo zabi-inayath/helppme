@@ -1,0 +1,240 @@
+/* General Styles */
+.enrolPage {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 80px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.enrolHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.enrollHeaderTitle {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 63px;
+  line-height: 68px;
+  color: #000000;
+  margin-bottom: 16px;
+}
+
+.enrollHeaderDescription {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: #757575;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.enrollForm {
+  width: 80vw;
+  margin: 0 auto;
+  padding: 40px;
+  background: #ffffff;
+  border: 2px solid #3269a6;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroupLabel {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+}
+
+.formGroupInput,
+.formGroupSelect {
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* File upload styling */
+.fileUploadContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fileUploadLabel {
+  width: 100%;
+  height: 152px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.displayNone {
+  display: none;
+}
+
+.fileUploadLabel:hover {
+  background-color: #f0f2f5;
+}
+
+.uploadIcon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 8px;
+}
+
+.fileName {
+  font-size: 14px;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+/* Message textarea styling */
+.textareaMessage {
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100px;
+  resize: none;
+}
+
+/* Submit button styling */
+.submitButton {
+  grid-column: span 2;
+  width: fit-content;
+  margin: 0 auto;
+  background: #0175f3;
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 6px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submitButton:hover {
+  background: #0052cc;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .enrollForm {
+    width: 90vw;
+    padding: 30px;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* .enrollPage {
+    padding: 40px 0;
+    width: 100%;
+  } */
+
+  .enrollHeaderTitle {
+    font-size: 48px;
+    line-height: 56px;
+  }
+
+  .enrollForm {
+    width: 90vw;
+    padding: 30px;
+    gap: 24px;
+  }
+
+  .submitButton {
+    width: 100%;
+  }
+
+  .fileUploadLabel {
+    height: 120px;
+  }
+
+  .uploadIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .fileName {
+    font-size: 12px;
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 530px) {
+  .enrollHeaderTitle {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .enrollHeaderDescription {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .enrollForm {
+    width: 75vw;
+    padding: 16px;
+    gap: 26px;
+    grid-template-columns: 1fr; /* Ensure all inputs are in a single column */
+  }
+
+  .formGroup {
+    grid-column: span 1; /* Ensure each form group spans only one column */
+  }
+
+  .formGroupInput,
+  .formGroupSelect,
+  .textareaMessage {
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .fileUploadLabel {
+    height: 100px;
+  }
+
+  .uploadIcon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .fileName {
+    font-size: 10px;
+    max-width: 120px;
+  }
+
+  .submitButton {
+    padding: 10px 24px;
+    font-size: 14px;
+    width: 100%; /* Make the button full width */
+    grid-column: span 1; /* Ensure the button spans only one column */
+  }
+}
