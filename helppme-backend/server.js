@@ -17,12 +17,11 @@ const app = express();
 app.use(
   cors({
     origin:
-      process.env.FRONTEND_URL || "http://103.235.106.138" || "http://admin.helppme.in" || "https://helppme.in" || "https://helppme-in-frontend.vercel.app",
+      process.env.FRONTEND_URL || "http://103.235.106.138" || "http://admin.helppme.in" || "https://helppme-in-frontend.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   })
 );
-
 
 app.use(bodyParser.json());
 
@@ -53,7 +52,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin:
-      process.env.FRONTEND_URL || "http://103.235.106.138" || "http://admin.helppme.in" || "https://helppme.in" || "https://helppme-in-frontend.vercel.app", // Use the frontend URL explicitly
+      process.env.FRONTEND_URL || "http://103.235.106.138" || "http://admin.helppme.in" || "https://helppme-in-frontend.vercel.app",
     methods: ["GET", "POST", "PUT"]
   },
   transports: ["websocket", "polling"] // Enable WebSocket and Polling
