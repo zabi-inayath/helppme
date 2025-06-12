@@ -93,6 +93,7 @@ const AdminLogin = () => {
     Security Verification
     </h2>
     
+                
     <p className="text-center text-gray-600 mb-6">
       Enter the security code to access this page.
     </p>
