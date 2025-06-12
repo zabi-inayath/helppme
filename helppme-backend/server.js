@@ -13,11 +13,23 @@ const pool1 = require("./models/admin");
 dotenv.config();
 const app = express();
 
-// Middleware
+const allowedOrigins = [
+  "http://103.235.106.138",
+  "http://admin.helppme.in",
+  "https://helppme-in-frontend.vercel.app"
+];
+
 app.use(
   cors({
-    origin:
-      process.env.FRONTEND_URL || "http://103.235.106.138" || "http://admin.helppme.in" || "https://helppme-in-frontend.vercel.app",
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   })
@@ -51,12 +63,12 @@ const server = http.createServer(app);
 // Initialize Socket.io
 const io = new Server(server, {
   cors: {
-    origin:
-      process.env.FRONTEND_URL || "http://103.235.106.138" || "http://admin.helppme.in" || "https://helppme-in-frontend.vercel.app",
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT"]
   },
-  transports: ["websocket", "polling"] // Enable WebSocket and Polling
+  transports: ["websocket", "polling"]
 });
+
 
 io.on("connection", (socket) => {
   console.log("New client connected");
