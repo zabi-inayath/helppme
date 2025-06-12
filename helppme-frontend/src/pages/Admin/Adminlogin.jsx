@@ -86,16 +86,13 @@ const AdminLogin = () => {
   <div className="bg-white p-6 sm:p-8 md:p-10 lg:p-12 rounded-xl shadow-lg w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
     {/* Logo Section */}
     <div className="flex justify-center mb-6">
-      <img src="../../../src/assets/SVG LOGO.svg" alt="Company Logo" className="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:h-30 lg:w-30" />
+      <img src="https://res.cloudinary.com/dhcfcubwa/image/upload/v1742617856/logo_p0irkv.svg" alt="Company Logo" className="h-16 w-36 sm:h-20 sm:w-40 md:h-24 md:w-44 lg:h-30 lg:w-68" />
     </div>
 
-    <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-4">
-      Helppme Admin Panel
+    <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-center text-gray-900 mb-4">
+    Security Verification
     </h2>
     
-    <h2 className="text-lg sm:text-xl font-bold text-center text-gray-500 mb-4">
-      Security Verification
-    </h2>
     <p className="text-center text-gray-600 mb-6">
       Enter the security code to access this page.
     </p>
@@ -119,7 +116,7 @@ const AdminLogin = () => {
       </div>
       <button
         type="submit"
-        className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
+        className="w-full bg-[#3c42f0] text-white py-2 rounded-lg font-semibold hover:bg-[#5257f7] transition"
       >
         Verify Code
       </button>
@@ -150,7 +147,7 @@ const AdminLogin = () => {
           />
         </div>
       ) : (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="min-h-screen flex items-center justify-center bg-[#007bff]">
           <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <img
@@ -159,8 +156,8 @@ const AdminLogin = () => {
                 className="w-32 h-32 rounded-full object-cover"
               />
             </div>
-            <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">
-              Admin Login
+            <h2 className="text-2xl font-bold text-center text-black-700 mb-6">
+            Welcome to Admin Panel!
             </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -189,7 +186,7 @@ const AdminLogin = () => {
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
+                className="w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600 transition"
               >
                 Login
               </button>
