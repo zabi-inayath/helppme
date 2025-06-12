@@ -17,7 +17,7 @@ const app = express();
 app.use(
   cors({
     origin:
-      process.env.FRONTEND_URL || "http://103.235.106.138" || "https://helppme-in-frontend.vercel.app",
+      process.env.FRONTEND_URL || "http://103.235.106.138" || "admin.helppme.in" || "helppme.in" || "https://helppme-in-frontend.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   })

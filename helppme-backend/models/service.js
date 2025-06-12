@@ -14,7 +14,7 @@ const createServiceTable = `
     business_hours VARCHAR(100) NOT NULL,
     business_name VARCHAR(200),
     business_address VARCHAR(255),
-    aadhar_id CHAR(12),
+    aadhar_id CHAR(22),
     medical_speciality VARCHAR(100),
     service_type VARCHAR(200),
     hospital VARCHAR(200),
