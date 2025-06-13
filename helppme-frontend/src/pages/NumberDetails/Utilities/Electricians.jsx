@@ -92,23 +92,20 @@ function Electricians() {
             >
               {/* Left - Profile & Name */}
               <div className="flex items-center space-x-3">
-                <img
-                  src={contact.image}
-                  alt={contact.name}
-                  className="w-12 h-12 rounded-full"
-                />
+                <img src={contact.image} alt={contact.name} className="w-12 h-12 rounded-full" />
                 <div>
                   <h3 className="text-gray-900 font-medium">{contact.name}</h3>
-                  <p className="text-gray-500 text-sm">{contact.location}</p>
+                  <p className="text-gray-500 text-sm">
+                    {contact.location.length > 15 ? contact.location.substring(0, 15) + "..." : contact.location}
+                  </p>
                 </div>
               </div>
-
+          
               {/* Right - Call Button */}
               <div className="flex">
                 <img
                   className="pr-6 cursor-pointer"
-                  src="https://res.cloudinary.com/dhcfcubwa/image/upload/v1740983401/chevron-left_yxwgrs.svg
-"
+                  src="https://res.cloudinary.com/dhcfcubwa/image/upload/v1740983401/chevron-left_yxwgrs.svg"
                   alt="View Contact"
                   onClick={() => setSelectedContact(contact)}
                 />
@@ -116,10 +113,7 @@ function Electricians() {
                   href={`tel:${contact.phone}`}
                   className="flex items-center space-x-2 bg-blue-100 text-blue-600 px-3 py-1.5 rounded-lg"
                 >
-                  <img
-                    src="https://res.cloudinary.com/dhcfcubwa/image/upload/v1740984201/Phone_cak2rz.svg"
-                    alt="Call"
-                  />
+                  <img src="https://res.cloudinary.com/dhcfcubwa/image/upload/v1740984201/Phone_cak2rz.svg" alt="Call" />
                   <span className="font-semibold mr-2">Call</span>
                 </a>
               </div>
