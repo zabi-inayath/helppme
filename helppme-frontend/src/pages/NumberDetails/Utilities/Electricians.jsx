@@ -96,7 +96,7 @@ function Electricians() {
                 <div>
                   <h3 className="text-gray-900 font-medium">{contact.name}</h3>
                   <p className="text-gray-500 text-sm">
-                    {contact.location.length > 15 ? contact.location.substring(0, 17) + "..." : contact.location}
+                    {contact.location.length >=17 ? contact.location.substring(0, 17) + "..." : contact.location}
                   </p>
                 </div>
               </div>
