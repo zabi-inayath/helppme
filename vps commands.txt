@@ -1,0 +1,35 @@
+103.235.106.138
+fy40ypI}F*Xc80oW
+
+sudo nano /etc/nginx/sites-available/helppme.in.conf
+sudo nano /etc/nginx/sites-available/api.helppme.in.conf
+
+
+DB_HOST=103.235.106.138
+DB_USER=root
+DB_PASS=Fakhi@2025
+DB_NAME=helppme
+DB_PORT=3306
+
+
+for backend update 
+
+cd /path/to/your/backend
+git pull origin main
+pm2 restart server.js
+
+for frontend update
+
+cd /path/to/your/frontend
+npm run build
+sudo systemctl restart nginx
+
+
+
+
+
+Admin Signup
+
+INSERT INTO admins (id, name, username, password, profilePic) VALUES ('helppme','Helppme','helppme','helppme@2025');
+
+ALTER TABLE services MODIFY aadhar_id CHAR(15);

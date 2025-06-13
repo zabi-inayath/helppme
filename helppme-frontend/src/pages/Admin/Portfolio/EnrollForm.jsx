@@ -450,7 +450,6 @@ function EnrollForm() {
                 value={formData.aadhar}
                 onChange={handleChange}
                 className={styles.formGroupInput}
-                required
               />
             </div>
           )}
