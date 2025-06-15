@@ -21,6 +21,7 @@ pm2 restart server.js
 for frontend update
 
 cd /path/to/your/frontend
+git pull origin main
 npm run build
 sudo systemctl restart nginx
 
