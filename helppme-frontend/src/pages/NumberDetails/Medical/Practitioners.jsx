@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useUserStore } from "../../../store/useUserStore";
 import { MutatingDots } from "react-loader-spinner";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Clock3, LayoutGrid, Settings, Phone, ChevronRight } from "lucide-react";
+import { MapPin, Clock3, LayoutGrid, Settings, Phone, ChevronRight, CornerUpRight } from "lucide-react";
 
 function Practitioners() {
   const { id } = useParams();

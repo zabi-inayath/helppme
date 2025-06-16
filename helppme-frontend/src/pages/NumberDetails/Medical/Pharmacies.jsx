@@ -9,7 +9,8 @@ import {
   LayoutGrid,
   Settings,
   Phone,
-  ChevronRight
+  ChevronRight,
+  CornerUpRight
 } from "lucide-react";
 
 function Pharmacies() {
