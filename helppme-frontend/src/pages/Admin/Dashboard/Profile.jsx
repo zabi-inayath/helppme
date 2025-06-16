@@ -17,6 +17,8 @@ const Profile = () => {
   const [filterServiceCategory, setFilterServiceCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [expandedId, setExpandedId] = useState(null);
+  const [editId, setEditId] = useState(null);
+  const [editForm, setEditForm] = useState({});
 
   const serviceCategories = [
     "Police",
@@ -386,8 +388,79 @@ const Profile = () => {
                             </span>
                           </div>
 
+                          {editId === app.id ? (
+                            <form
+                              onSubmit={async (e) => {
+                                e.preventDefault();
+                                try {
+                                  await axios.put(
+                                    `${import.meta.env.VITE_BACKEND_URL}/api/admin/edit/${app.id}`,
+                                    editForm
+                                  );
+                                  toast.success("Application updated!");
+                                  setEditId(null);
+                                  fetchApplications();
+                                } catch (err) {
+                                  toast.error("Failed to update.");
+                                }
+                              }}
+                              className="space-y-2"
+                            >
+                              <input
+                                className="w-full p-2 border rounded"
+                                value={editForm.name || ""}
+                                onChange={e => setEditForm({ ...editForm, name: e.target.value })}
+                                placeholder="Name"
+                              />
+                              <input
+                                className="w-full p-2 border rounded"
+                                value={editForm.phone || ""}
+                                onChange={e => setEditForm({ ...editForm, phone: e.target.value })}
+                                placeholder="Phone"
+                              />
+                              <input
+                                className="w-full p-2 border rounded"
+                                value={editForm.location || ""}
+                                onChange={e => setEditForm({ ...editForm, location: e.target.value })}
+                                placeholder="Location"
+                              />
+                              <input
+                                className="w-full p-2 border rounded"
+                                value={editForm.email || ""}
+                                onChange={e => setEditForm({ ...editForm, email: e.target.value })}
+                                placeholder="Email"
+                              />
+                              {/* Add more fields as needed */}
+                              <div className="flex gap-2">
+                                <button
+                                  type="submit"
+                                  className="bg-blue-500 text-white rounded px-4 py-2"
+                                >
+                                  Save
+                                </button>
+                                <button
+                                  type="button"
+                                  className="bg-gray-300 rounded px-4 py-2"
+                                  onClick={() => setEditId(null)}
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            </form>
+                          ) : (
+                            <button
+                              className="mt-4 text-blue-900 bg-blue-100 rounded-lg p-2 w-full hover:bg-blue-200 transition"
+                              onClick={() => {
+                                setEditId(app.id);
+                                setEditForm(app);
+                              }}
+                            >
+                              Edit Data
+                            </button>
+                          )}
+
                           <button
-                            className="mt-4 text-red-900 bg-red-100 rounded-lg p-2 w-full hover:bg-red-200 transition"
+                            className="mt-2 text-red-900 bg-red-100 rounded-lg p-2 w-full hover:bg-red-200 transition"
                             onClick={() => handleDelete(app.id)}
                           >
                             Delete Entry

@@ -168,3 +168,23 @@ exports.deleteService = async (req, res) => {
     handleDatabaseError(err, res);
   }
 };
+
+// Example editService controller
+exports.editService = async (req, res) => {
+  const { id } = req.params;
+  const fields = req.body;
+  // Build dynamic SQL for only provided fields
+  const keys = Object.keys(fields);
+  const values = Object.values(fields);
+  if (keys.length === 0) return res.status(400).json({ success: false, message: "No fields to update" });
+  const setClause = keys.map(key => `${key} = ?`).join(', ');
+  try {
+    const [result] = await pool.query(
+      `UPDATE services SET ${setClause} WHERE id = ?`,
+      [...values, id]
+    );
+    res.json({ success: true });
+  } catch (err) {
+    handleDatabaseError(err, res);
+  }
+};
