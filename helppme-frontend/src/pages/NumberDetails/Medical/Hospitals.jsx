@@ -53,7 +53,8 @@ function Hospitals() {
       service_category: item.service_category,
       business_hours: item.business_hours,
       googleMapLink: item.googleMapLink,
-      medical_speciality: item.medical_speciality
+      medical_speciality: item.medical_speciality,
+      category: item.category // <-- add this line
     }));
 
   return (
