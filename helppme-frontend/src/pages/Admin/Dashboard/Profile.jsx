@@ -10,7 +10,7 @@ const socket = io(import.meta.env.VITE_BACKEND_URL, {
 });
 
 
-const Profile = () => {
+const Profile = ({ adminDetails }) => {
   const [applications, setApplications] = useState([]);
   const [filterCategory, setFilterCategory] = useState("All");
   const [filterStatus, setFilterStatus] = useState("Approved");
@@ -373,10 +373,16 @@ const Profile = () => {
                             </strong>
                             <span>
                               {app.created_at
-                                ? new Date(app.created_at).toLocaleDateString(
-                                    "en-GB"
-                                  )
+                                ? new Date(app.created_at).toLocaleDateString("en-GB")
                                 : "N/A"}
+                            </span>
+                          </div>
+                          <div className="flex justify-between">
+                            <strong className="font-semibold">
+                              Approved by:
+                            </strong>
+                            <span>
+                              {app.approved_by || "N/A"}
                             </span>
                           </div>
 

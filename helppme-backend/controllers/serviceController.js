@@ -134,3 +134,26 @@ exports.getAllServices = async (req, res) => {
     handleDatabaseError(err, res);
   }
 };
+
+// // Approve Service
+// exports.approveService = async (req, res) => {
+//   const { id } = req.params;
+//   const { approved_by } = req.body;
+
+//   if (!approved_by) {
+//     return res.status(400).json({ success: false, message: "approved_by is required" });
+//   }
+
+//   try {
+//     const query = "UPDATE services SET status = 'approved', approved_by = ? WHERE id = ?";
+//     const [result] = await pool.query(query, [approved_by, id]);
+
+//     if (result.affectedRows === 0) {
+//       return res.status(404).json({ success: false, message: "Service not found" });
+//     }
+
+//     res.status(200).json({ success: true, message: "Service approved successfully" });
+//   } catch (err) {
+//     handleDatabaseError(err, res);
+//   }
+// };

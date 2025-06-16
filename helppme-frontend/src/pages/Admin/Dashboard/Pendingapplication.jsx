@@ -44,6 +44,7 @@ function PendingApplications() {
   // Approve application
   const handleApprove = async (id) => {
     const adminToken = localStorage.getItem("adminToken");
+    const adminName = localStorage.getItem("adminName"); // get admin name
 
     if (!adminToken) {
       toast.error("Admin token is missing! Please log in.");
@@ -53,7 +54,7 @@ function PendingApplications() {
     try {
       await axios.put(
         `${import.meta.env.VITE_BACKEND_URL}/api/admin/approve/${id}`,
-        {},
+        { approved_by: adminName }, // send admin name in body
         {
           headers: { Authorization: `Bearer ${adminToken}` }
         }

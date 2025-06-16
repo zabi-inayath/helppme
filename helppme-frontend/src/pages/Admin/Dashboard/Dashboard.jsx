@@ -70,6 +70,7 @@ const Sidebar = ({
             response.data.admin.profilePic ||
             "https://res.cloudinary.com/dhcfcubwa/image/upload/v1740481737/nooho00u6zzhbhqtzbxv.png"
         });
+        localStorage.setItem("adminName", response.data.admin.name); // Store admin name in localStorage
       } catch (error) {
         console.error("Failed to fetch admin details:", error.message);
         setAdminDetails({
@@ -370,7 +371,7 @@ const Dashboard = () => {
             )}
             {activePage === "profiles" && (
               <div>
-                <Profile />
+                <Profile adminDetails={adminDetails} />
               </div>
             )}
             {activePage === "donations" && (
