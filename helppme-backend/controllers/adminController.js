@@ -169,20 +169,47 @@ exports.deleteService = async (req, res) => {
   }
 };
 
-// Example editService controller
+// Edit Service
 exports.editService = async (req, res) => {
   const { id } = req.params;
-  const fields = req.body;
-  // Build dynamic SQL for only provided fields
+  const allowedFields = [
+    "name",
+    "phone",
+    "email",
+    "category",
+    "service_category",
+    "location",
+    "image",
+    "business_hours",
+    "medical_speciality",
+    "aadhar_id",
+    "service_type",
+    "hospital",
+    "googleMapLink",
+    "message",
+    "business_name",
+    "business_address"
+  ];
+  // Filter only allowed fields
+  const fields = Object.fromEntries(
+    Object.entries(req.body).filter(([key]) => allowedFields.includes(key))
+  );
   const keys = Object.keys(fields);
   const values = Object.values(fields);
-  if (keys.length === 0) return res.status(400).json({ success: false, message: "No fields to update" });
+
+  if (keys.length === 0) {
+    return res.status(400).json({ success: false, message: "No valid fields to update" });
+  }
+
   const setClause = keys.map(key => `${key} = ?`).join(', ');
   try {
     const [result] = await pool.query(
       `UPDATE services SET ${setClause} WHERE id = ?`,
       [...values, id]
     );
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ success: false, message: "Service not found" });
+    }
     res.json({ success: true });
   } catch (err) {
     handleDatabaseError(err, res);
