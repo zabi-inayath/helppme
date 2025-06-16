@@ -395,7 +395,10 @@ const Profile = () => {
                                 try {
                                   await axios.put(
                                     `${import.meta.env.VITE_BACKEND_URL}/api/admin/edit/${app.id}`,
-                                    editForm
+                                    editForm,
+                                    {
+                                      headers: { Authorization: `Bearer ${adminToken}` }
+                                    }
                                   );
                                   toast.success("Application updated!");
                                   setEditId(null);
