@@ -33,7 +33,7 @@ const Log = () => {
       <style>{`
         @font-face {
           font-family: 'Ligema';
-          src: url('/src/pages/fonts/Ligema-DEMO.ttf') format('truetype');
+          src: url('/fonts/Ligema-DEMO.ttf') format('truetype');
           font-weight: normal;
           font-style: normal;
           font-display: swap;
