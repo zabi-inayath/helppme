@@ -8,10 +8,10 @@ const Log = () => {
          }}>
       
       <div className="text-9xl mt-30 typing-text text-end">Hello</div>
-      <div className="text-8xl mb-25 typing-delay ">Ambur</div>
+      <div className="text-8xl mb-30 typing-delay ">Ambur</div>
       
       <button 
-        className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-xl mb-3 cursor-pointer border-none text-white hover:bg-gray-200 transition-all duration-400 button-entrance"
+        className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-xl mb-5 cursor-pointer border-none text-white hover:bg-gray-200 transition-all duration-400 button-entrance"
         onClick={() => {
             localStorage.setItem('hasVisitedApp', 'true');
             window.location.href = '/beta';
