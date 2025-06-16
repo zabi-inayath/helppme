@@ -404,6 +404,7 @@ const Profile = () => {
                                   setEditId(null);
                                   fetchApplications();
                                 } catch (err) {
+                                  console.error("Error updating application:", err);
                                   toast.error("Failed to update.");
                                 }
                               }}
