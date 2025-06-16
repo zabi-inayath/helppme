@@ -10,7 +10,7 @@ const socket = io(import.meta.env.VITE_BACKEND_URL, {
 });
 
 
-const Profile = ({ adminDetails }) => {
+const Profile = () => {
   const [applications, setApplications] = useState([]);
   const [filterCategory, setFilterCategory] = useState("All");
   const [filterStatus, setFilterStatus] = useState("Approved");
