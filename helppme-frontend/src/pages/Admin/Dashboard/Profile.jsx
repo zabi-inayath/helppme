@@ -392,6 +392,11 @@ const Profile = () => {
                             <form
                               onSubmit={async (e) => {
                                 e.preventDefault();
+                                const adminToken = localStorage.getItem("adminToken"); // <-- Add this line
+                                if (!adminToken) {
+                                  toast.error("Admin token is missing! Please log in.");
+                                  return;
+                                }
                                 try {
                                   await axios.put(
                                     `${import.meta.env.VITE_BACKEND_URL}/api/admin/edit/${app.id}`,
