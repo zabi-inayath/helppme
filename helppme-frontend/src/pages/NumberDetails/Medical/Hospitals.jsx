@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin,
   Clock3,
+  LayoutGrid,
+  Settings,
   Phone,
   CornerUpRight
 } from "lucide-react";
