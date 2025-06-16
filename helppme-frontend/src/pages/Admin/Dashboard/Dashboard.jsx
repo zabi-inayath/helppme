@@ -371,7 +371,7 @@ const Dashboard = () => {
             )}
             {activePage === "profiles" && (
               <div>
-                <Profile adminDetails={adminDetails} />
+                <Profile />
               </div>
             )}
             {activePage === "donations" && (
