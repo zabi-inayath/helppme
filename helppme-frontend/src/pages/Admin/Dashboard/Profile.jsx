@@ -381,10 +381,12 @@ const Profile = () => {
                           </div>
                           <div className="flex justify-between">
                             <strong className="font-semibold">
-                              Approved by:
+                              {app.status === "rejected" ? "Rejected by:" : "Approved by:"}
                             </strong>
                             <span>
-                              {app.approved_by || "N/A"}
+                              {app.status === "rejected"
+                                ? app.rejected_by || "N/A"
+                                : app.approved_by || "N/A"}
                             </span>
                           </div>
 

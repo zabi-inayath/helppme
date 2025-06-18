@@ -35,7 +35,7 @@ exports.signupAdmin = async (req, res) => {
   try {
     const query =
       "INSERT INTO admins (id, name, username, password, profilePic) VALUES (?, ?, ?, ?, ?)";
-    await pool.query(query, [id,name, username, password, profilePic]);
+    await pool.query(query, [id, name, username, password, profilePic]);
     res.status(201).json({ success: true, message: "Signup Successful!" });
   } catch (err) {
     handleDatabaseError(err, res);
@@ -134,16 +134,22 @@ exports.approveService = async (req, res) => {
 // Reject Service
 exports.rejectService = async (req, res) => {
   const { id } = req.params;
+  const { rejected_by } = req.body;
 
   if (!id) {
     return res
       .status(400)
       .json({ success: false, message: "Service ID is required" });
   }
+  if (!rejected_by) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Admin Name is required" });
+  }
 
   try {
-    const query = "UPDATE services SET status = 'rejected' WHERE id = ?";
-    await pool.query(query, [id]);
+    const query = "UPDATE services SET status = 'rejected', rejected_by = ? WHERE id = ?";
+    await pool.query(query, [rejected_by, id]);
     res.status(200).json({ success: true, message: "Service rejected." });
   } catch (err) {
     handleDatabaseError(err, res);
