@@ -484,27 +484,27 @@ function EnrollForm() {
             <option value="24/7">24/7</option>
             <option value="9.00 A.M - 5.00 P.M">9.00 A.M - 5.00 P.M</option>
             <option value="9.00 A.M - 6.00 P.M">9.00 A.M - 6.00 P.M</option>
-            <option value="9.00 A.M - 6.00 P.M">9.00 A.M - 7.00 P.M</option>
+            <option value="9.00 A.M - 7.00 P.M">9.00 A.M - 7.00 P.M</option>
             <option value="9.00 A.M - 8.00 P.M">9.00 A.M - 8.00 P.M</option>
             <option value="9.00 A.M - 9.00 P.M">9.00 A.M - 9.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">9.00 A.M - 10.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">9.00 A.M - 11.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">10.00 A.M - 5.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">10.00 A.M - 6.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">10.00 A.M - 7.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">10.00 A.M - 8.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">10.00 A.M - 9.00 P.M</option>
+            <option value="9.00 A.M - 10.00 P.M">9.00 A.M - 10.00 P.M</option>
+            <option value="9.00 A.M - 11.00 P.M">9.00 A.M - 11.00 P.M</option>
+            <option value="10.00 A.M - 5.00 P.M">10.00 A.M - 5.00 P.M</option>
+            <option value="10.00 A.M - 6.00 P.M">10.00 A.M - 6.00 P.M</option>
+            <option value="10.00 A.M - 7.00 P.M">10.00 A.M - 7.00 P.M</option>
+            <option value="10.00 A.M - 8.00 P.M">10.00 A.M - 8.00 P.M</option>
+            <option value="10.00 A.M - 9.00 P.M">10.00 A.M - 9.00 P.M</option>
             <option value="10.00 A.M - 10.00 P.M">10.00 A.M - 10.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">10.00 A.M - 11.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">11.00 A.M - 5.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">11.00 A.M - 6.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">11.00 A.M - 7.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">11.00 A.M - 8.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">11.00 A.M - 9.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">11.00 A.M - 10.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">11.00 A.M - 11.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">10.00 A.M - 4.00 P.M</option>
-            <option value="10.00 A.M - 10.00 P.M">5.00 P.M - 10.00 P.M</option>
+            <option value="10.00 A.M - 11.00 P.M">10.00 A.M - 11.00 P.M</option>
+            <option value="11.00 A.M - 5.00 P.M">11.00 A.M - 5.00 P.M</option>
+            <option value="11.00 A.M - 6.00 P.M">11.00 A.M - 6.00 P.M</option>
+            <option value="11.00 A.M - 7.00 P.M">11.00 A.M - 7.00 P.M</option>
+            <option value="11.00 A.M - 8.00 P.M">11.00 A.M - 8.00 P.M</option>
+            <option value="11.00 A.M - 9.00 P.M">11.00 A.M - 9.00 P.M</option>
+            <option value="11.00 A.M - 10.00 P.M">11.00 A.M - 10.00 P.M</option>
+            <option value="11.00 A.M - 10.00 P.M">11.00 A.M - 11.00 P.M</option>
+            <option value="10.00 A.M - 4.00 P.M">10.00 A.M - 4.00 P.M</option>
+            <option value="5.00 P.M - 10.00 P.M">5.00 P.M - 10.00 P.M</option>
           </select>
         </div>
 
