@@ -194,6 +194,7 @@ exports.editService = async (req, res) => {
     "googleMapLink",
     "message",
     "business_name",
+    "status",
     "business_address"
   ];
   // Filter only allowed fields

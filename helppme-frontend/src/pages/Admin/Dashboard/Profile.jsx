@@ -394,7 +394,7 @@ const Profile = () => {
                             <form
                               onSubmit={async (e) => {
                                 e.preventDefault();
-                                const adminToken = localStorage.getItem("adminToken"); // <-- Add this line
+                                const adminToken = localStorage.getItem("adminToken");
                                 if (!adminToken) {
                                   toast.error("Admin token is missing! Please log in.");
                                   return;
@@ -441,7 +441,18 @@ const Profile = () => {
                                 onChange={e => setEditForm({ ...editForm, email: e.target.value })}
                                 placeholder="Email"
                               />
-                              {/* Add more fields as needed */}
+                              {/* --- Status Dropdown --- */}
+                              <select
+                                className="w-full p-2 border rounded"
+                                value={editForm.status || ""}
+                                onChange={e => setEditForm({ ...editForm, status: e.target.value })}
+                              >
+                                <option value="">Select Status</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                                <option value="pending">Pending</option>
+                              </select>
+                              {/* --- End Status Dropdown --- */}
                               <div className="flex gap-2">
                                 <button
                                   type="submit"
