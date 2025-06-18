@@ -164,12 +164,16 @@ function EnrollForm() {
         }
       );
 
+      const result = await response.json();
+
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to submit the form.");
+        // Show duplicate or other backend messages as toast.success
+        toast.error(result.message || "Failed to submit the form.");
+        setResponseMessage(result.message || "Failed to submit the form.");
+        setLoading(false);
+        return;
       }
 
-      const result = await response.json();
       toast.success("Form submitted successfully!");
       setResponseMessage("Form sent for approval!");
 

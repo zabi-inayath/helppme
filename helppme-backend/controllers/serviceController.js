@@ -87,6 +87,18 @@ exports.enrollService = async (req, res) => {
       message: "Service enrollment request submitted."
     });
   } catch (err) {
+    // Duplicate entry error handling
+    if (err.code === "ER_DUP_ENTRY") {
+      let field = "data";
+      if (err.message.includes("email")) field = "email";
+      else if (err.message.includes("phone")) field = "mobile";
+      // Add more fields if needed
+
+      return res.status(400).json({
+        success: false,
+        message: `${field} already registered`
+      });
+    }
     handleDatabaseError(err, res);
   }
 };
