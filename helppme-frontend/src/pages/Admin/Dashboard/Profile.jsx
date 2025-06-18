@@ -347,6 +347,12 @@ const Profile = () => {
                           </div>
                           <div className="flex justify-between">
                             <strong className="font-semibold">
+                              Hospital Name:
+                            </strong>
+                            <span>{app.hospitalName || ""}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <strong className="font-semibold">
                               Business Name:
                             </strong>
                             <span>{app.business_name || ""}</span>
