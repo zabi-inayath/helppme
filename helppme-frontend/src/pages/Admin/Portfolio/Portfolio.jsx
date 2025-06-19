@@ -28,6 +28,14 @@ function Portfolio() {
       <div className={styles.appContainer}>
         {/* Add enrollment section directly */}
         <div className={styles.enrolPage} id="enrol-form">
+          {/* Logo at the top center */}
+          <div className="flex justify-center mb-8">
+            <img
+              src="https://res.cloudinary.com/dhcfcubwa/image/upload/v1750311061/Group_13_wvnpjb.png"
+              alt="Logo"
+              className="h-16 w-auto"
+            />
+          </div>
           <div className={styles.enrolHeader}>
             <h1 className="dm-sans">Emergency Services Enrollment</h1>
             <p>

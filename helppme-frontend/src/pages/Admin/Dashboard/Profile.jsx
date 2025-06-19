@@ -274,7 +274,11 @@ const Profile = () => {
                     </td>
                     <td className="p-4 text-center">
                       <button
-                        className="cursor-pointer"
+                        className={`cursor-pointer px-2 py-1 rounded transition-all duration-200 ${
+                          expandedId === app.id
+                            ? "bg-blue-100 text-blue-700"
+                            : "hover:bg-blue-50"
+                        }`}
                         onClick={() =>
                           setExpandedId(expandedId === app.id ? null : app.id)
                         }
@@ -295,106 +299,113 @@ const Profile = () => {
                             : "max-h-0 p-0"
                         } transition-all duration-300 ease-in-out overflow-hidden`}
                       >
-                        <div className="border border-gray-300 rounded-lg shadow-lg p-4 space-y-2 max-w-lg mx-auto">
-                          <div className="flex justify-between">
-                            <strong className="font-semibold">Type:</strong>
-                            <span>{app.service_type}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <strong className="font-semibold">Name:</strong>
-                            <span>{app.name}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <strong className="font-semibold">Phone:</strong>
-                            <span>{app.phone}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <strong className="font-semibold">Location:</strong>
-                            <span>{app.location}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <strong className="font-semibold">Email:</strong>
-                            <span>{app.email}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <strong className="font-semibold">
-                              Service Category:
-                            </strong>
-                            <span>{app.service_category}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <strong className="font-semibold">Category:</strong>
-                            <span>{app.category}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <strong className="font-semibold">
-                              Aadhar ID:
-                            </strong>
-                            <span>
-                              {app.aadhar_id
-                                ? app.aadhar_id.replace(
-                                    /(\d{4})(\d{4})(\d{4})/,
-                                    "$1 $2 $3"
-                                  )
-                                : ""}
-                            </span>
-                          </div>
-                          <div className="flex justify-between">
-                            <strong className="font-semibold">
-                              Medical Speciality:
-                            </strong>
-                            <span>{app.medical_speciality || ""}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <strong className="font-semibold">
-                              Hospital Name:
-                            </strong>
-                            <span>{app.hospitalName || ""}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <strong className="font-semibold">
-                              Business Name:
-                            </strong>
-                            <span>{app.business_name || ""}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <strong className="font-semibold">
-                              Business Hours:
-                            </strong>
-                            <span>{app.business_hours || ""}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <strong className="font-semibold">
-                              Business Address:
-                            </strong>
-                            <span>{app.business_address || ""}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <strong className="font-semibold">
-                              GMap link:
-                            </strong>
-                            <span>{app.googleMapLink || ""}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <strong className="font-semibold">
-                              Listed on:
-                            </strong>
-                            <span>
-                              {app.created_at
-                                ? new Date(app.created_at).toLocaleDateString("en-GB")
-                                : "N/A"}
-                            </span>
-                          </div>
-                          <div className="flex justify-between">
-                            <strong className="font-semibold">
-                              {app.status === "rejected" ? "Rejected by:" : "Approved by:"}
-                            </strong>
-                            <span>
-                              {app.status === "rejected"
-                                ? app.rejected_by || "N/A"
-                                : app.approved_by || "N/A"}
-                            </span>
-                          </div>
+                        <div className="border border-gray-300 rounded-lg shadow-lg p-6 space-y-2 max-w-2xl mx-auto">
+                          {app.service_type && (
+                            <div className="flex justify-between">
+                              <strong className="font-semibold">Type:</strong>
+                              <span>{app.service_type}</span>
+                            </div>
+                          )}
+                          {app.name && (
+                            <div className="flex justify-between">
+                              <strong className="font-semibold">Name:</strong>
+                              <span>{app.name}</span>
+                            </div>
+                          )}
+                          {app.phone && (
+                            <div className="flex justify-between">
+                              <strong className="font-semibold">Phone:</strong>
+                              <span>{app.phone}</span>
+                            </div>
+                          )}
+                          {app.location && (
+                            <div className="flex justify-between">
+                              <strong className="font-semibold">Location:</strong>
+                              <span>{app.location}</span>
+                            </div>
+                          )}
+                          {app.email && (
+                            <div className="flex justify-between">
+                              <strong className="font-semibold">Email:</strong>
+                              <span>{app.email}</span>
+                            </div>
+                          )}
+                          {app.service_category && (
+                            <div className="flex justify-between">
+                              <strong className="font-semibold">Service Category:</strong>
+                              <span>{app.service_category}</span>
+                            </div>
+                          )}
+                          {app.category && (
+                            <div className="flex justify-between">
+                              <strong className="font-semibold">Category:</strong>
+                              <span>{app.category}</span>
+                            </div>
+                          )}
+                          {app.aadhar_id && (
+                            <div className="flex justify-between">
+                              <strong className="font-semibold">Aadhar ID:</strong>
+                              <span>
+                                {app.aadhar_id.replace(/(\d{4})(\d{4})(\d{4})/, "$1 $2 $3")}
+                              </span>
+                            </div>
+                          )}
+                          {app.medical_speciality && (
+                            <div className="flex justify-between">
+                              <strong className="font-semibold">Medical Speciality:</strong>
+                              <span>{app.medical_speciality}</span>
+                            </div>
+                          )}
+                          {app.hospitalName && (
+                            <div className="flex justify-between">
+                              <strong className="font-semibold">Hospital Name:</strong>
+                              <span>{app.hospitalName}</span>
+                            </div>
+                          )}
+                          {app.business_name && (
+                            <div className="flex justify-between">
+                              <strong className="font-semibold">Business Name:</strong>
+                              <span>{app.business_name}</span>
+                            </div>
+                          )}
+                          {app.business_hours && (
+                            <div className="flex justify-between">
+                              <strong className="font-semibold">Business Hours:</strong>
+                              <span>{app.business_hours}</span>
+                            </div>
+                          )}
+                          {app.business_address && (
+                            <div className="flex justify-between">
+                              <strong className="font-semibold">Business Address:</strong>
+                              <span>{app.business_address}</span>
+                            </div>
+                          )}
+                          {app.googleMapLink && (
+                            <div className="flex justify-between">
+                              <strong className="font-semibold">GMap link:</strong>
+                              <span>{app.googleMapLink}</span>
+                            </div>
+                          )}
+                          {app.created_at && (
+                            <div className="flex justify-between">
+                              <strong className="font-semibold">Listed on:</strong>
+                              <span>
+                                {new Date(app.created_at).toLocaleDateString("en-GB")}
+                              </span>
+                            </div>
+                          )}
+                          {(app.status === "rejected" && app.rejected_by) || (app.status !== "rejected" && app.approved_by) ? (
+                            <div className="flex justify-between">
+                              <strong className="font-semibold">
+                                {app.status === "rejected" ? "Rejected by:" : "Approved by:"}
+                              </strong>
+                              <span>
+                                {app.status === "rejected"
+                                  ? app.rejected_by
+                                  : app.approved_by}
+                              </span>
+                            </div>
+                          ) : null}
 
                           {editId === app.id ? (
                             <form
