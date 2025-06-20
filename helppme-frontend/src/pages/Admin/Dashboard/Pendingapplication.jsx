@@ -136,7 +136,7 @@ function PendingApplications() {
                 <p className="mt-2 md:mt-0">{app.email}</p>
               </div>
 
-              <div className="flex space-x-2 w-full md:w-auto justify-center">
+              <div className="flex space-x-2 w-full md:w-auto justify-between">
                 <img
                   src="https://res.cloudinary.com/dhcfcubwa/image/upload/v1741669062/reject_pekjei.svg"
                   alt="Reject"

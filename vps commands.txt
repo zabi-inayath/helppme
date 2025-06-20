@@ -4,6 +4,8 @@ fy40ypI}F*Xc80oW
 sudo nano /etc/nginx/sites-available/helppme.in.conf
 sudo nano /etc/nginx/sites-available/api.helppme.in.conf
 
+sudo mysql -u root -p
+Fakhi@2025
 
 DB_HOST=103.235.106.138
 DB_USER=root
@@ -34,6 +36,8 @@ Admin Signup
 INSERT INTO admins (id, name, username, password, profilePic) VALUES ('helppme','Helppme','helppme','helppme@2025');
 
 ALTER TABLE services MODIFY aadhar_id CHAR(15);
+
+ALTER TABLE services RENAME COLUMN hospital TO hospitalName;
 
 
 

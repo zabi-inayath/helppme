@@ -1,6 +1,21 @@
 import "./Footer.css";
 
 function Footer() {
+
+  const handleSubscribe = (event) => {
+    event.preventDefault();
+    const emailInput = document.querySelector('.subscribe-input');
+    const email = emailInput.value.trim();
+    if (email) {
+      // Here you would typically send the email to your server or API
+      console.log(`Subscribed with email: ${email}`);
+      emailInput.value = ''; // Clear the input after subscription
+    }
+    else {
+      alert('Please enter a valid email address.');
+    }
+
+  }
   return (
     <footer className="footer">
       <div className="newsletter">

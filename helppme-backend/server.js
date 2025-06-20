@@ -17,7 +17,9 @@ const allowedOrigins = [
   "http://103.235.106.138",
   "https://api.helppme.in",
   "https://admin.helppme.in",
-  "https://helppme-in-frontend.vercel.app"
+  "https://helppme-in-frontend.vercel.app",
+  "http://localhost:5173",
+  "http://localhost:5001",
 ];
 
 app.use(
