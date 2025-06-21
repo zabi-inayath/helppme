@@ -104,7 +104,7 @@ function Pharmacies() {
     <h3 className="text-gray-900 font-medium">
       {contact.name.length > 15 ? contact.name.substring(0, 15) + "..." : contact.name}
     </h3>
-    <p className="text-gray-500 text-sm">{contact.location}</p>
+    <p className="text-gray-500 text-sm">{contact.location.length > 15 ? contact.location.substring(0, 18) + "..." : contact.location}</p>
   </div>
 </div>
 
