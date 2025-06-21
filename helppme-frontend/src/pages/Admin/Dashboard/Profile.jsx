@@ -87,7 +87,7 @@ const Profile = () => {
 
   const handleDelete = async (id) => {
     const isConfirmed = window.confirm(
-      "Are you sure you want to permanently delete this application?"
+      "Are you sure you want to permanently delete this service?"
     );
 
     if (!isConfirmed) return;
