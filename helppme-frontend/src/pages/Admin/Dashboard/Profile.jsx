@@ -460,6 +460,12 @@ const Profile = () => {
                                   onChange={e => setEditForm({ ...editForm, email: e.target.value })}
                                   placeholder="Email"
                                 />
+                                <input
+                                  className="w-full p-2 border rounded"
+                                  value={editForm.googleMapLink || ""}
+                                  onChange={e => setEditForm({ ...editForm, googleMapLink: e.target.value })}
+                                  placeholder="https://maps.app.goo.gl/LAjuAA1qhrZQZaQy9"
+                                />
                                 {/* --- Status Dropdown --- */}
                                 <select
                                   className="w-full p-2 border rounded"
