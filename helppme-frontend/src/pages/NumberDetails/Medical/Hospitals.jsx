@@ -95,18 +95,18 @@ function Hospitals() {
             >
               {/* Left - Profile & Name */}
               <div className="flex items-center space-x-3">
-  <img
-    src={contact.image}
-    alt={contact.name}
-    className="w-12 h-12 rounded-full"
-  />
-  <div>
-    <h3 className="text-gray-900 font-medium">
-      {contact.name.length > 15 ? contact.name.substring(0, 15) + "..." : contact.name}
-    </h3>
-    <p className="text-gray-500 text-sm">{contact.location.length > 15 ? contact.location.substring(0, 18) + "..." : contact.location}</p>
-  </div>
-</div>
+                <img
+                  src={contact.image}
+                  alt={contact.name}
+                  className="w-12 h-12 rounded-full"
+                />
+                <div>
+                  <h3 className="text-gray-900 font-medium">
+                    {contact.name.length > 15 ? contact.name.substring(0, 15) + "..." : contact.name}
+                  </h3>
+                  <p className="text-gray-500 text-sm">{contact.location.length > 15 ? contact.location.substring(0, 18) + "..." : contact.location}</p>
+                </div>
+              </div>
 
               {/* Right - Call Button */}
               <div className="flex">
