@@ -37,7 +37,7 @@ function Ambulance() {
   if (error) return <div>Error: {error.message}</div>;
 
   const contacts = data
-    .filter((item) => item.service_category === "Ambulance Services")
+    .filter((item) => item.service_category === "Ambulance Service")
     .map((item) => ({
       id: item.id,
       name: item.name,
