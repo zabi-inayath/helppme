@@ -398,7 +398,7 @@ const Profile = () => {
                             )}
                             {app.call_count && (
                               <div className="flex justify-between">
-                                <strong className="font-semibold">Listed on:</strong>
+                                <strong className="font-semibold">Call Count:</strong>
                                 <span>
                                   {app.call_count} {app.call_count === 1 ? "call" : "calls"}
                                 </span>
