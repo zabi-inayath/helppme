@@ -396,6 +396,14 @@ const Profile = () => {
                                 </span>
                               </div>
                             )}
+                            {app.call_count && (
+                              <div className="flex justify-between">
+                                <strong className="font-semibold">Listed on:</strong>
+                                <span>
+                                  {app.call_count} {app.call_count === 1 ? "call" : "calls"}
+                                </span>
+                              </div>
+                            )}
                             {(app.status === "rejected" && app.rejected_by) || (app.status !== "rejected" && app.approved_by) ? (
                               <div className="flex justify-between">
                                 <strong className="font-semibold">

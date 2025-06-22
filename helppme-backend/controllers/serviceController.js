@@ -147,6 +147,19 @@ exports.getAllServices = async (req, res) => {
   }
 };
 
+// Increment Call Count
+exports.incrementCallCount = async (req, res) => {
+  const { id } = req.params;
+  if (!id) return res.status(400).json({ success: false, message: "Service ID required" });
+
+  try {
+    await pool.query("UPDATE services SET call_count = IFNULL(call_count,0) + 1 WHERE id = ?", [id]);
+    res.json({ success: true, message: "Call count incremented" });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Failed to increment call count" });
+  }
+};
+
 // // Approve Service
 // exports.approveService = async (req, res) => {
 //   const { id } = req.params;

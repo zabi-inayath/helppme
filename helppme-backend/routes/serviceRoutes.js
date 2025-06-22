@@ -4,7 +4,8 @@ const {
   getApprovedServices,
   pendingApproval,
   getRejectedServices,
-  getAllServices
+  getAllServices,
+  incrementCallCount
 } = require("../controllers/serviceController");
 
 const router = express.Router();
@@ -15,5 +16,6 @@ router.get("/enroll/approved", getApprovedServices);
 router.get("/enroll/rejected", getRejectedServices);
 
 router.get("/enroll/allforms", getAllServices);
+router.post("/call/:id", incrementCallCount);
 
 module.exports = router;

@@ -11,6 +11,7 @@ import {
   Phone,
   CornerUpRight
 } from "lucide-react";
+import axios from "axios";
 
 function Hospitals() {
   const { id } = useParams();
@@ -232,6 +233,16 @@ function Hospitals() {
                     {/* Call Button */}
                     <a
                       href={`tel:${selectedContact.phone}`}
+                      onClick={async (e) => {
+                        try {
+                          await axios.post(
+                            `${import.meta.env.VITE_BACKEND_URL}/api/services/call/${selectedContact.id}`
+                          );
+                          // Optionally: toast.success("Call count updated!");
+                        } catch (err) {
+                          // Optionally: toast.error("Failed to update call count");
+                        }
+                      }}
                       className="block text-center w-full bg-blue-600 text-white py-2 rounded-lg text-lg hover:bg-blue-700 transition flex justify-center items-center gap-2"
                     >
                       <Phone className="w-5 h-5" />
@@ -322,6 +333,16 @@ function Hospitals() {
                   {/* Call Button */}
                   <a
                     href={`tel:${selectedContact.phone}`}
+                    onClick={async (e) => {
+                      try {
+                        await axios.post(
+                          `${import.meta.env.VITE_BACKEND_URL}/api/services/call/${selectedContact.id}`
+                        );
+                        // Optionally: toast.success("Call count updated!");
+                      } catch (err) {
+                        // Optionally: toast.error("Failed to update call count");
+                      }
+                    }}
                     className="block text-center w-full bg-blue-600 text-white py-2 rounded-lg text-lg hover:bg-blue-700 transition flex justify-center items-center gap-2"
                   >
                     <Phone className="w-5 h-5" />
