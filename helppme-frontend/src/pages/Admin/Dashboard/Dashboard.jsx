@@ -44,7 +44,7 @@ const Sidebar = ({
           },
         });
       } catch (error) {
-        toast.error("Please log in...");
+        toast.error("session timed out, please login again");
         localStorage.removeItem("adminToken");
         navigate("/admin/login");
       }
