@@ -466,6 +466,10 @@ function EnrollForm() {
                         <option value="Dentist">Dentist</option>
                         <option value="General Physician">General Physician</option>
                         <option value="ENT Specialist">ENT Specialist</option>
+                        <option value="Diabetologist">Diabetologist</option>
+                        <option value="Gastroenterologist">Gastroenterologist</option>
+                        <option value="Cardiologist">Cardiologist</option>
+                        <option value="Urologist">Urologist</option>
                       </select>
                     </div>
 
@@ -505,7 +509,7 @@ function EnrollForm() {
                         <option value="Custom">Custom</option>
                       </select>
                       <small style={{ color: "#888" }}>
-                          For custom working days, please mention in the message box below
+                        For custom working days, please mention in the message box below
                       </small>
                     </div>
                   </>

@@ -67,11 +67,35 @@ function Doctors() {
     "Dentist",
     "General Physician",
     "ENT Specialist",
-    ...new Set(
-      data
-        .filter((item) => item.service_category === "Doctor")
-        .map((item) => item.medical_speciality)
-        .filter((spec) => spec)
+    "Diabetologist",
+    "Gastroenterologist",
+    "Cardiologist",
+    "Urologist",
+    ...Array.from(
+      new Set(
+        data
+          .filter((item) => item.service_category === "Doctor")
+          .map((item) => item.medical_speciality)
+          .filter(
+            (spec) =>
+              spec &&
+              ![
+                "Dermatologist",
+                "Neurologist",
+                "Pediatrician",
+                "Orthopedic",
+                "Gynecologist",
+                "Ophthalmologist",
+                "Dentist",
+                "General Physician",
+                "ENT Specialist",
+                "Diabetologist",
+                "Gastroenterologist",
+                "Cardiologist",
+                "Urologist"
+              ].includes(spec)
+          )
+      )
     )
   ];
 
@@ -282,7 +306,7 @@ function Doctors() {
                   </p>
                 </div>
 
-                
+
               </div>
 
               <div className="px-4 pb-5 space-y-3">
