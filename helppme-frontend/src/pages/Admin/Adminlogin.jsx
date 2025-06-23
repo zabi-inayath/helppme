@@ -124,17 +124,17 @@ const AdminLogin = () => {
             />
           </div>
         ) : (
-          <div className="fixed inset-0 bg-gradient-to-br from-blue-900/90 via-blue-700/80 to-blue-400/80 flex items-center justify-center p-4 z-50">
-            <div className="bg-white/95 backdrop-blur-2xl p-8 sm:p-10 md:p-12 rounded-3xl shadow-2xl w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg border border-blue-200">
+          <div className="fixed inset-0 bg-gradient-to-br from-blue-900/90 via-blue-700/80 to-blue-400/80 flex items-center justify-center p-2 sm:p-4 z-50">
+            <div className="bg-white/95 backdrop-blur-2xl p-4 xs:p-6 sm:p-8 md:p-10 rounded-2xl shadow-2xl w-full max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg border border-blue-200">
               {/* Logo Section */}
               <div className="flex justify-center mb-6">
                 <img
                   src="https://res.cloudinary.com/dhcfcubwa/image/upload/v1742617856/logo_p0irkv.svg"
                   alt="Company Logo"
-                  className="h-16 w-36 sm:h-20 sm:w-40 md:h-24 md:w-44 object-contain drop-shadow-xl"
+                  className="h-14 w-32 sm:h-16 sm:w-36 md:h-20 md:w-44 object-contain drop-shadow-xl"
                 />
               </div>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-center text-blue-800 mb-2 tracking-tight">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-center text-blue-800 mb-2 tracking-tight">
                 Security Verification
               </h2>
               <p className="text-center text-blue-500 mb-6 text-base">
@@ -158,9 +158,9 @@ const AdminLogin = () => {
                         onChange={(e) => handleSecurityInput(e, idx)}
                         onKeyDown={(e) => handleSecurityKeyDown(e, idx)}
                         onPaste={handleSecurityPaste}
-                        className={`w-12 h-14 sm:w-14 sm:h-16 text-2xl sm:text-3xl text-center rounded-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 outline-none transition-all duration-200 shadow-md font-bold tracking-widest ${num
-                          ? "animate-pulse border-blue-400 bg-blue-50"
-                          : "bg-blue-50"
+                        className={`w-10 h-12 xs:w-12 xs:h-14 sm:w-14 sm:h-16 text-xl xs:text-2xl sm:text-3xl text-center rounded-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 outline-none transition-all duration-200 shadow-md font-bold tracking-widest ${num
+                            ? "animate-pulse border-blue-400 bg-blue-50"
+                            : "bg-blue-50"
                           }`}
                         style={{
                           transition: "box-shadow 0.2s, border-color 0.2s, background 0.2s",
@@ -202,15 +202,15 @@ const AdminLogin = () => {
           />
         </div>
       ) : (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-blue-200 to-blue-400">
-          <div className="bg-white/95 backdrop-blur-2xl p-8 md:p-12 rounded-3xl shadow-2xl w-155 border border-blue-200">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-blue-200 to-blue-400 p-2 xs:p-4">
+          <div className="bg-white/95 backdrop-blur-2xl p-4 xs:p-6 md:p-12 rounded-2xl shadow-2xl w-full max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg border border-blue-200">
             <div className="flex flex-col items-center mb-6">
               <img
                 src="https://res.cloudinary.com/dhcfcubwa/image/upload/v1740797487/z6wgxw2xcwrzpgjgyhwg.svg"
                 alt="Admin Profile Pic"
-                className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover shadow-lg border-4 border-blue-200"
+                className="w-20 h-20 xs:w-28 xs:h-28 md:w-32 md:h-32 rounded-full object-cover shadow-lg border-4 border-blue-200"
               />
-              <h2 className="text-2xl md:text-3xl font-extrabold text-blue-800 mt-4 mb-2 tracking-tight">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-blue-800 mt-4 mb-2 tracking-tight">
                 Welcome to Admin Panel!
               </h2>
               <p className="text-blue-500 text-center mb-2">
