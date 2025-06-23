@@ -356,19 +356,19 @@ function Pharmacies() {
 
                   {/* Call Button */}
                   <a
-                      href={`tel:${selectedContact.phone}`}
-                      onClick={async (e) => {
-                        // Handle call count update
-                        console.log("Call button clicked for contact:", selectedContact.name);
-                        try {
-                          await axios.post(
-                            `${import.meta.env.VITE_BACKEND_URL}/api/services/call/${selectedContact.id}`
-                          );
-                          // Optionally: toast.success("Call count updated!");
-                        } catch (err) {
-                          // Optionally: toast.error("Failed to update call count");
-                        }
-                      }}
+                    href={`tel:${selectedContact.phone}`}
+                    onClick={async (e) => {
+                      // Handle call count update
+                      console.log("Call button clicked for contact:", selectedContact.name);
+                      try {
+                        await axios.post(
+                          `${import.meta.env.VITE_BACKEND_URL}/api/services/call/${selectedContact.id}`
+                        );
+                        // Optionally: toast.success("Call count updated!");
+                      } catch (err) {
+                        // Optionally: toast.error("Failed to update call count");
+                      }
+                    }}
                     className="block text-center w-full bg-blue-600 text-white py-2 rounded-lg text-lg hover:bg-blue-700 transition flex justify-center items-center gap-2"
                   >
                     <Phone className="w-5 h-5" />

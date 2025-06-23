@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Home, User, Gift, LogOut, Menu } from "lucide-react";
+import { Home, User, Gift, LogOut, Menu, ChartSpline } from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDateTime } from "./CurrentDay";
@@ -8,6 +8,7 @@ import { MutatingDots } from "react-loader-spinner";
 import Profile from "./Profile";
 import toast from "react-hot-toast";
 import NetworkStatus from "../../../store/NetworkStatus";
+import Traffic from "./Traffic";
 
 // Transparent scrollbar CSS (add to global CSS if you want it everywhere)
 const transparentScrollbarStyle = `
@@ -44,7 +45,7 @@ const Sidebar = ({
           },
         });
       } catch (error) {
-        toast.error("session timed out, please login again");
+        toast.error("Session timed out");
         localStorage.removeItem("adminToken");
         navigate("/admin/login");
       }
@@ -144,6 +145,18 @@ const Sidebar = ({
               }}
             >
               <Gift size={20} /> <span>Donations</span>
+            </button>
+            <button
+              className={`flex items-center space-x-3 p-3 rounded-lg w-full ${activePage === "traffic"
+                  ? "bg-blue-500 text-white"
+                  : "hover:bg-gray-200"
+                }`}
+              onClick={() => {
+                setActivePage("traffic");
+                toggleSidebar();
+              }}
+            >
+              <ChartSpline size={20} /> <span>Traffic</span>
             </button>
           </nav>
         </div>
@@ -405,7 +418,12 @@ const Dashboard = () => {
               <div>
                 <h1 className="text-2xl sm:text-3xl font-bold">Donations Section</h1>
               </div>
-            )}
+              )}
+              {activePage === "traffic" && (
+                <div>
+                  <Traffic />
+                </div>
+              )}
           </div>
         </div>
       )}

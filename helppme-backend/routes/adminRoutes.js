@@ -6,7 +6,9 @@ const {
   signupAdmin,
   deleteService,
   adminDetails,
-  editService
+  editService,
+  trafficAnalytics,
+  callTraffic
 } = require("../controllers/adminController");
 const authMiddleware = require("../middleware/authMiddleware");
 const router = express.Router();
@@ -18,6 +20,9 @@ router.put("/reject/:id", authMiddleware, rejectService);
 router.delete("/delete/:id", authMiddleware, deleteService);
 
 router.put("/edit/:id", authMiddleware, editService);
+
+router.get("/total-call-count", trafficAnalytics);
+router.get("/call-traffic", callTraffic);
 
 router.get("/details", adminDetails);
 

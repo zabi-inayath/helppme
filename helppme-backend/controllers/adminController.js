@@ -222,3 +222,35 @@ exports.editService = async (req, res) => {
     handleDatabaseError(err, res);
   }
 };
+
+
+exports.trafficAnalytics = async (req, res) => {
+  try {
+    const [rows] = await pool.query('SELECT SUM(call_count) AS total_call_count FROM services');
+    const total = rows[0].total_call_count !== null ? rows[0].total_call_count : 0;
+    res.json({ total_call_count: total });
+  } catch (err) {
+    console.error('Error fetching total call count:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+// Get call count grouped by date (adjust column/table names as needed)
+exports.callTraffic = async (req, res) => {
+  try {
+    const range = parseInt(req.query.range) || 7; // Default to 7 days
+    const [rows] = await pool.query(
+      `SELECT DATE(created_at) AS date, SUM(call_count) AS call_count
+       FROM services
+       WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL ? DAY)
+       GROUP BY DATE(created_at)
+       ORDER BY DATE(created_at) DESC
+       LIMIT ?`,
+      [range, range]
+    );
+    res.json(rows.reverse()); // reverse for chronological order
+  } catch (err) {
+    console.error('Error fetching call traffic:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
