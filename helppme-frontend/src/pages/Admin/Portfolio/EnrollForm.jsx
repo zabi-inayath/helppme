@@ -48,6 +48,7 @@ function EnrollForm() {
   const [accountType, setAccountType] = useState("individual");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showForm, setShowForm] = useState(true);
+  const [phoneType, setPhoneType] = useState("mobile"); // "mobile" or "landline"
 
   const serviceCategories = {
     Emergency: [
@@ -144,8 +145,8 @@ function EnrollForm() {
       message: formData.message,
       ...(accountType === "individual" &&
         categoriesRequiringAadhar.includes(formData.serviceCategory) && {
-          aadhar_id: formData.aadhar
-        })
+        aadhar_id: formData.aadhar
+      })
     };
 
     if (formData.serviceCategory === "Doctor") {
@@ -272,22 +273,20 @@ function EnrollForm() {
               <div className="flex justify-center gap-4 mb-4">
                 <button
                   type="button"
-                  className={`${
-                    accountType === "individual"
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-200"
-                  } py-2 px-4 rounded`}
+                  className={`${accountType === "individual"
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200"
+                    } py-2 px-4 rounded`}
                   onClick={() => setAccountType("individual")}
                 >
                   Individual
                 </button>
                 <button
                   type="button"
-                  className={`${
-                    accountType === "business"
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-200"
-                  } py-2 px-4 rounded`}
+                  className={`${accountType === "business"
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200"
+                    } py-2 px-4 rounded`}
                   onClick={() => setAccountType("business")}
                 >
                   Business
@@ -303,9 +302,8 @@ function EnrollForm() {
                   <input
                     type="text"
                     name="name"
-                    placeholder={`Enter your ${
-                      accountType === "business" ? "Business Name" : "Full Name"
-                    }`}
+                    placeholder={`Enter your ${accountType === "business" ? "Business Name" : "Full Name"
+                      }`}
                     value={formData.name}
                     maxLength={36}
                     onChange={handleChange}
@@ -317,21 +315,55 @@ function EnrollForm() {
                 {/* Phone Field */}
                 <div className={styles.formGroup}>
                   <label className={styles.formGroupLabel}>Phone</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Enter your phone number"
-                    value={`+91 ${formData.phone}`}
-                    onChange={(e) => {
-                      const rawValue = e.target.value.replace(/\D/g, "").slice(2); // Remove "+91" and non-digit characters
-                      if (rawValue.length <= 10) {
-                        setFormData({ ...formData, phone: rawValue });
+                  <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                    <select
+                      value={phoneType}
+                      onChange={e => {
+                        setPhoneType(e.target.value);
+                        setFormData({ ...formData, phone: "" }); // reset phone on type change
+                      }}
+                      className={styles.formGroupSelect}
+                      style={{ width: "80px", minWidth: "60px" }}
+                    >
+                      <option value="mobile">+91</option>
+                      <option value="landline">0</option>
+                    </select>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder={
+                        phoneType === "mobile"
+                          ? "Enter your mobile number"
+                          : "Enter your landline number"
                       }
-                    }}
-                    className={styles.formGroupInput}
-                    maxLength={14} // Includes "+91 " and 10 digits
-                    required
-                  />
+                      value={
+                        phoneType === "mobile"
+                          ? formData.phone
+                          : formData.phone
+                      }
+                      onChange={e => {
+                        let value = e.target.value.replace(/\D/g, "");
+                        if (phoneType === "mobile") {
+                          // Mobile: 10 digits only
+                          if (value.length > 10) value = value.slice(0, 10);
+                        } else {
+                          // Landline: allow up to 11 digits, must start with 0
+                          if (!value.startsWith("0")) value = "0" + value;
+                          if (value.length > 11) value = value.slice(0, 11);
+                        }
+                        setFormData({ ...formData, phone: value });
+                      }}
+                      className={styles.formGroupInput}
+                      style={{ flex: 1 }}
+                      maxLength={phoneType === "mobile" ? 10 : 11}
+                      required
+                    />
+                  </div>
+                  <small style={{ color: "#888" }}>
+                    {phoneType === "mobile"
+                      ? "Mobile numbers must be 10 digits."
+                      : "Landline numbers must start with 0 and can be up to 11 digits."}
+                  </small>
                 </div>
 
                 {/* Email Field */}
@@ -461,9 +493,8 @@ function EnrollForm() {
                   <input
                     type="text"
                     name="address"
-                    placeholder={`Enter ${
-                      accountType === "business" ? "Business Address" : "your Address"
-                    }`}
+                    placeholder={`Enter ${accountType === "business" ? "Business Address" : "your Address"
+                      }`}
                     value={formData.address}
                     onChange={handleChange}
                     maxLength={60}
@@ -516,6 +547,70 @@ function EnrollForm() {
                   >
                     <option value="">Select business hours</option>
                     <option value="24/7">24/7</option>
+                    {/* 6 AM */}
+                    <option value="6.00 A.M - 7.00 A.M">6.00 A.M - 7.00 A.M</option>
+                    <option value="6.00 A.M - 8.00 A.M">6.00 A.M - 8.00 A.M</option>
+                    <option value="6.00 A.M - 9.00 A.M">6.00 A.M - 9.00 A.M</option>
+                    <option value="6.00 A.M - 10.00 A.M">6.00 A.M - 10.00 A.M</option>
+                    <option value="6.00 A.M - 11.00 A.M">6.00 A.M - 11.00 A.M</option>
+                    <option value="6.00 A.M - 12.00 P.M">6.00 A.M - 12.00 P.M</option>
+                    <option value="6.00 A.M - 1.00 P.M">6.00 A.M - 1.00 P.M</option>
+                    <option value="6.00 A.M - 2.00 P.M">6.00 A.M - 2.00 P.M</option>
+                    <option value="6.00 A.M - 3.00 P.M">6.00 A.M - 3.00 P.M</option>
+                    <option value="6.00 A.M - 4.00 P.M">6.00 A.M - 4.00 P.M</option>
+                    <option value="6.00 A.M - 5.00 P.M">6.00 A.M - 5.00 P.M</option>
+                    <option value="6.00 A.M - 6.00 P.M">6.00 A.M - 6.00 P.M</option>
+                    <option value="6.00 A.M - 7.00 P.M">6.00 A.M - 7.00 P.M</option>
+                    <option value="6.00 A.M - 8.00 P.M">6.00 A.M - 8.00 P.M</option>
+                    <option value="6.00 A.M - 9.00 P.M">6.00 A.M - 9.00 P.M</option>
+                    <option value="6.00 A.M - 10.00 P.M">6.00 A.M - 10.00 P.M</option>
+                    <option value="6.00 A.M - 11.00 P.M">6.00 A.M - 11.00 P.M</option>
+                    <option value="6.00 A.M - 12.00 A.M">6.00 A.M - 12.00 A.M</option>
+                    {/* 7 AM */}
+                    <option value="7.00 A.M - 8.00 A.M">7.00 A.M - 8.00 A.M</option>
+                    <option value="7.00 A.M - 9.00 A.M">7.00 A.M - 9.00 A.M</option>
+                    <option value="7.00 A.M - 10.00 A.M">7.00 A.M - 10.00 A.M</option>
+                    <option value="7.00 A.M - 11.00 A.M">7.00 A.M - 11.00 A.M</option>
+                    <option value="7.00 A.M - 12.00 P.M">7.00 A.M - 12.00 P.M</option>
+                    <option value="7.00 A.M - 1.00 P.M">7.00 A.M - 1.00 P.M</option>
+                    <option value="7.00 A.M - 2.00 P.M">7.00 A.M - 2.00 P.M</option>
+                    <option value="7.00 A.M - 3.00 P.M">7.00 A.M - 3.00 P.M</option>
+                    <option value="7.00 A.M - 4.00 P.M">7.00 A.M - 4.00 P.M</option>
+                    <option value="7.00 A.M - 5.00 P.M">7.00 A.M - 5.00 P.M</option>
+                    <option value="7.00 A.M - 6.00 P.M">7.00 A.M - 6.00 P.M</option>
+                    <option value="7.00 A.M - 7.00 P.M">7.00 A.M - 7.00 P.M</option>
+                    <option value="7.00 A.M - 8.00 P.M">7.00 A.M - 8.00 P.M</option>
+                    <option value="7.00 A.M - 9.00 P.M">7.00 A.M - 9.00 P.M</option>
+                    <option value="7.00 A.M - 10.00 P.M">7.00 A.M - 10.00 P.M</option>
+                    <option value="7.00 A.M - 11.00 P.M">7.00 A.M - 11.00 P.M</option>
+                    <option value="7.00 A.M - 12.00 A.M">7.00 A.M - 12.00 A.M</option>
+                    <option value="7.00 A.M - 1.00 A.M">7.00 A.M - 1.00 A.M</option>
+                    {/* 8 AM */}
+                    <option value="8.00 A.M - 9.00 A.M">8.00 A.M - 9.00 A.M</option>
+                    <option value="8.00 A.M - 10.00 A.M">8.00 A.M - 10.00 A.M</option>
+                    <option value="8.00 A.M - 11.00 A.M">8.00 A.M - 11.00 A.M</option>
+                    <option value="8.00 A.M - 12.00 P.M">8.00 A.M - 12.00 P.M</option>
+                    <option value="8.00 A.M - 1.00 P.M">8.00 A.M - 1.00 P.M</option>
+                    <option value="8.00 A.M - 2.00 P.M">8.00 A.M - 2.00 P.M</option>
+                    <option value="8.00 A.M - 3.00 P.M">8.00 A.M - 3.00 P.M</option>
+                    <option value="8.00 A.M - 4.00 P.M">8.00 A.M - 4.00 P.M</option>
+                    <option value="8.00 A.M - 5.00 P.M">8.00 A.M - 5.00 P.M</option>
+                    <option value="8.00 A.M - 6.00 P.M">8.00 A.M - 6.00 P.M</option>
+                    <option value="8.00 A.M - 7.00 P.M">8.00 A.M - 7.00 P.M</option>
+                    <option value="8.00 A.M - 8.00 P.M">8.00 A.M - 8.00 P.M</option>
+                    <option value="8.00 A.M - 9.00 P.M">8.00 A.M - 9.00 P.M</option>
+                    <option value="8.00 A.M - 10.00 P.M">8.00 A.M - 10.00 P.M</option>
+                    <option value="8.00 A.M - 11.00 P.M">8.00 A.M - 11.00 P.M</option>
+                    <option value="8.00 A.M - 12.00 A.M">8.00 A.M - 12.00 A.M</option>
+                    <option value="8.00 A.M - 1.00 A.M">8.00 A.M - 1.00 A.M</option>
+                    {/* 9 AM */}
+                    <option value="9.00 A.M - 10.00 A.M">9.00 A.M - 10.00 A.M</option>
+                    <option value="9.00 A.M - 11.00 A.M">9.00 A.M - 11.00 A.M</option>
+                    <option value="9.00 A.M - 12.00 P.M">9.00 A.M - 12.00 P.M</option>
+                    <option value="9.00 A.M - 1.00 P.M">9.00 A.M - 1.00 P.M</option>
+                    <option value="9.00 A.M - 2.00 P.M">9.00 A.M - 2.00 P.M</option>
+                    <option value="9.00 A.M - 3.00 P.M">9.00 A.M - 3.00 P.M</option>
+                    <option value="9.00 A.M - 4.00 P.M">9.00 A.M - 4.00 P.M</option>
                     <option value="9.00 A.M - 5.00 P.M">9.00 A.M - 5.00 P.M</option>
                     <option value="9.00 A.M - 6.00 P.M">9.00 A.M - 6.00 P.M</option>
                     <option value="9.00 A.M - 7.00 P.M">9.00 A.M - 7.00 P.M</option>
@@ -523,6 +618,15 @@ function EnrollForm() {
                     <option value="9.00 A.M - 9.00 P.M">9.00 A.M - 9.00 P.M</option>
                     <option value="9.00 A.M - 10.00 P.M">9.00 A.M - 10.00 P.M</option>
                     <option value="9.00 A.M - 11.00 P.M">9.00 A.M - 11.00 P.M</option>
+                    <option value="9.00 A.M - 12.00 A.M">9.00 A.M - 12.00 A.M</option>
+                    <option value="9.00 A.M - 1.00 A.M">9.00 A.M - 1.00 A.M</option>
+                    {/* 10 AM */}
+                    <option value="10.00 A.M - 11.00 A.M">10.00 A.M - 11.00 A.M</option>
+                    <option value="10.00 A.M - 12.00 P.M">10.00 A.M - 12.00 P.M</option>
+                    <option value="10.00 A.M - 1.00 P.M">10.00 A.M - 1.00 P.M</option>
+                    <option value="10.00 A.M - 2.00 P.M">10.00 A.M - 2.00 P.M</option>
+                    <option value="10.00 A.M - 3.00 P.M">10.00 A.M - 3.00 P.M</option>
+                    <option value="10.00 A.M - 4.00 P.M">10.00 A.M - 4.00 P.M</option>
                     <option value="10.00 A.M - 5.00 P.M">10.00 A.M - 5.00 P.M</option>
                     <option value="10.00 A.M - 6.00 P.M">10.00 A.M - 6.00 P.M</option>
                     <option value="10.00 A.M - 7.00 P.M">10.00 A.M - 7.00 P.M</option>
@@ -530,6 +634,14 @@ function EnrollForm() {
                     <option value="10.00 A.M - 9.00 P.M">10.00 A.M - 9.00 P.M</option>
                     <option value="10.00 A.M - 10.00 P.M">10.00 A.M - 10.00 P.M</option>
                     <option value="10.00 A.M - 11.00 P.M">10.00 A.M - 11.00 P.M</option>
+                    <option value="10.00 A.M - 12.00 A.M">10.00 A.M - 12.00 A.M</option>
+                    <option value="10.00 A.M - 1.00 A.M">10.00 A.M - 1.00 A.M</option>
+                    {/* 11 AM */}
+                    <option value="11.00 A.M - 12.00 P.M">11.00 A.M - 12.00 P.M</option>
+                    <option value="11.00 A.M - 1.00 P.M">11.00 A.M - 1.00 P.M</option>
+                    <option value="11.00 A.M - 2.00 P.M">11.00 A.M - 2.00 P.M</option>
+                    <option value="11.00 A.M - 3.00 P.M">11.00 A.M - 3.00 P.M</option>
+                    <option value="11.00 A.M - 4.00 P.M">11.00 A.M - 4.00 P.M</option>
                     <option value="11.00 A.M - 5.00 P.M">11.00 A.M - 5.00 P.M</option>
                     <option value="11.00 A.M - 6.00 P.M">11.00 A.M - 6.00 P.M</option>
                     <option value="11.00 A.M - 7.00 P.M">11.00 A.M - 7.00 P.M</option>
@@ -537,8 +649,115 @@ function EnrollForm() {
                     <option value="11.00 A.M - 9.00 P.M">11.00 A.M - 9.00 P.M</option>
                     <option value="11.00 A.M - 10.00 P.M">11.00 A.M - 10.00 P.M</option>
                     <option value="11.00 A.M - 10.00 P.M">11.00 A.M - 11.00 P.M</option>
-                    <option value="10.00 A.M - 4.00 P.M">10.00 A.M - 4.00 P.M</option>
+                    <option value="11.00 A.M - 12.00 A.M">11.00 A.M - 12.00 A.M</option>
+                    <option value="11.00 A.M - 1.00 A.M">11.00 A.M - 1.00 A.M</option>
+                    {/* 12 PM */}
+                    <option value="12.00 P.M - 1.00 P.M">12.00 P.M - 1.00 P.M</option>
+                    <option value="12.00 P.M - 2.00 P.M">12.00 P.M - 2.00 P.M</option>
+                    <option value="12.00 P.M - 3.00 P.M">12.00 P.M - 3.00 P.M</option>
+                    <option value="12.00 P.M - 4.00 P.M">12.00 P.M - 4.00 P.M</option>
+                    <option value="12.00 P.M - 5.00 P.M">12.00 P.M - 5.00 P.M</option>
+                    <option value="12.00 P.M - 6.00 P.M">12.00 P.M - 6.00 P.M</option>
+                    <option value="12.00 P.M - 7.00 P.M">12.00 P.M - 7.00 P.M</option>
+                    <option value="12.00 P.M - 8.00 P.M">12.00 P.M - 8.00 P.M</option>
+                    <option value="12.00 P.M - 9.00 P.M">12.00 P.M - 9.00 P.M</option>
+                    <option value="12.00 P.M - 10.00 P.M">12.00 P.M - 10.00 P.M</option>
+                    <option value="12.00 P.M - 11.00 P.M">12.00 P.M - 11.00 P.M</option>
+                    <option value="12.00 P.M - 12.00 A.M">12.00 P.M - 12.00 A.M</option>
+                    <option value="12.00 P.M - 1.00 A.M">12.00 P.M - 1.00 A.M</option>
+                    {/* 1 PM */}
+                    <option value="1.00 P.M - 2.00 P.M">1.00 P.M - 2.00 P.M</option>
+                    <option value="1.00 P.M - 3.00 P.M">1.00 P.M - 3.00 P.M</option>
+                    <option value="1.00 P.M - 4.00 P.M">1.00 P.M - 4.00 P.M</option>
+                    <option value="1.00 P.M - 5.00 P.M">1.00 P.M - 5.00 P.M</option>
+                    <option value="1.00 P.M - 6.00 P.M">1.00 P.M - 6.00 P.M</option>
+                    <option value="1.00 P.M - 7.00 P.M">1.00 P.M - 7.00 P.M</option>
+                    <option value="1.00 P.M - 8.00 P.M">1.00 P.M - 8.00 P.M</option>
+                    <option value="1.00 P.M - 9.00 P.M">1.00 P.M - 9.00 P.M</option>
+                    <option value="1.00 P.M - 10.00 P.M">1.00 P.M - 10.00 P.M</option>
+                    <option value="1.00 P.M - 11.00 P.M">1.00 P.M - 11.00 P.M</option>
+                    <option value="1.00 P.M - 12.00 A.M">1.00 P.M - 12.00 A.M</option>
+                    <option value="1.00 P.M - 1.00 A.M">1.00 P.M - 1.00 A.M</option>
+                    {/* 2 PM */}
+                    <option value="2.00 P.M - 3.00 P.M">2.00 P.M - 3.00 P.M</option>
+                    <option value="2.00 P.M - 4.00 P.M">2.00 P.M - 4.00 P.M</option>
+                    <option value="2.00 P.M - 5.00 P.M">2.00 P.M - 5.00 P.M</option>
+                    <option value="2.00 P.M - 6.00 P.M">2.00 P.M - 6.00 P.M</option>
+                    <option value="2.00 P.M - 7.00 P.M">2.00 P.M - 7.00 P.M</option>
+                    <option value="2.00 P.M - 8.00 P.M">2.00 P.M - 8.00 P.M</option>
+                    <option value="2.00 P.M - 9.00 P.M">2.00 P.M - 9.00 P.M</option>
+                    <option value="2.00 P.M - 10.00 P.M">2.00 P.M - 10.00 P.M</option>
+                    <option value="2.00 P.M - 11.00 P.M">2.00 P.M - 11.00 P.M</option>
+                    <option value="2.00 P.M - 12.00 A.M">2.00 P.M - 12.00 A.M</option>
+                    <option value="2.00 P.M - 1.00 A.M">2.00 P.M - 1.00 A.M</option>
+                    {/* 3 PM */}
+                    <option value="3.00 P.M - 4.00 P.M">3.00 P.M - 4.00 P.M</option>
+                    <option value="3.00 P.M - 5.00 P.M">3.00 P.M - 5.00 P.M</option>
+                    <option value="3.00 P.M - 6.00 P.M">3.00 P.M - 6.00 P.M</option>
+                    <option value="3.00 P.M - 7.00 P.M">3.00 P.M - 7.00 P.M</option>
+                    <option value="3.00 P.M - 8.00 P.M">3.00 P.M - 8.00 P.M</option>
+                    <option value="3.00 P.M - 9.00 P.M">3.00 P.M - 9.00 P.M</option>
+                    <option value="3.00 P.M - 10.00 P.M">3.00 P.M - 10.00 P.M</option>
+                    <option value="3.00 P.M - 11.00 P.M">3.00 P.M - 11.00 P.M</option>
+                    <option value="3.00 P.M - 12.00 A.M">3.00 P.M - 12.00 A.M</option>
+                    <option value="3.00 P.M - 1.00 A.M">3.00 P.M - 1.00 A.M</option>
+                    {/* 4 PM */}
+                    <option value="4.00 P.M - 5.00 P.M">4.00 P.M - 5.00 P.M</option>
+                    <option value="4.00 P.M - 6.00 P.M">4.00 P.M - 6.00 P.M</option>
+                    <option value="4.00 P.M - 7.00 P.M">4.00 P.M - 7.00 P.M</option>
+                    <option value="4.00 P.M - 8.00 P.M">4.00 P.M - 8.00 P.M</option>
+                    <option value="4.00 P.M - 9.00 P.M">4.00 P.M - 9.00 P.M</option>
+                    <option value="4.00 P.M - 10.00 P.M">4.00 P.M - 10.00 P.M</option>
+                    <option value="4.00 P.M - 11.00 P.M">4.00 P.M - 11.00 P.M</option>
+                    <option value="4.00 P.M - 12.00 A.M">4.00 P.M - 12.00 A.M</option>
+                    <option value="4.00 P.M - 1.00 A.M">4.00 P.M - 1.00 A.M</option>
+                    {/* 5 PM */}
+                    <option value="5.00 P.M - 6.00 P.M">5.00 P.M - 6.00 P.M</option>
+                    <option value="5.00 P.M - 7.00 P.M">5.00 P.M - 7.00 P.M</option>
+                    <option value="5.00 P.M - 8.00 P.M">5.00 P.M - 8.00 P.M</option>
+                    <option value="5.00 P.M - 9.00 P.M">5.00 P.M - 9.00 P.M</option>
                     <option value="5.00 P.M - 10.00 P.M">5.00 P.M - 10.00 P.M</option>
+                    <option value="5.00 P.M - 11.00 P.M">5.00 P.M - 11.00 P.M</option>
+                    <option value="5.00 P.M - 12.00 A.M">5.00 P.M - 12.00 A.M</option>
+                    <option value="5.00 P.M - 1.00 A.M">5.00 P.M - 1.00 A.M</option>
+                    {/* 6 PM */}
+                    <option value="6.00 P.M - 7.00 P.M">6.00 P.M - 7.00 P.M</option>
+                    <option value="6.00 P.M - 8.00 P.M">6.00 P.M - 8.00 P.M</option>
+                    <option value="6.00 P.M - 9.00 P.M">6.00 P.M - 9.00 P.M</option>
+                    <option value="6.00 P.M - 10.00 P.M">6.00 P.M - 10.00 P.M</option>
+                    <option value="6.00 P.M - 11.00 P.M">6.00 P.M - 11.00 P.M</option>
+                    <option value="6.00 P.M - 12.00 A.M">6.00 P.M - 12.00 A.M</option>
+                    <option value="6.00 P.M - 1.00 A.M">6.00 P.M - 1.00 A.M</option>
+                    {/* 7 PM */}
+                    <option value="7.00 P.M - 8.00 P.M">7.00 P.M - 8.00 P.M</option>
+                    <option value="7.00 P.M - 9.00 P.M">7.00 P.M - 9.00 P.M</option>
+                    <option value="7.00 P.M - 10.00 P.M">7.00 P.M - 10.00 P.M</option>
+                    <option value="7.00 P.M - 11.00 P.M">7.00 P.M - 11.00 P.M</option>
+                    <option value="7.00 P.M - 12.00 A.M">7.00 P.M - 12.00 A.M</option>
+                    <option value="7.00 P.M - 1.00 A.M">7.00 P.M - 1.00 A.M</option>
+                    {/* 8 PM */}
+                    <option value="8.00 P.M - 9.00 P.M">8.00 P.M - 9.00 P.M</option>
+                    <option value="8.00 P.M - 10.00 P.M">8.00 P.M - 10.00 P.M</option>
+                    <option value="8.00 P.M - 11.00 P.M">8.00 P.M - 11.00 P.M</option>
+                    <option value="8.00 P.M - 12.00 A.M">8.00 P.M - 12.00 A.M</option>
+                    <option value="8.00 P.M - 1.00 A.M">8.00 P.M - 1.00 A.M</option>
+                    {/* 9 PM */}
+                    <option value="9.00 P.M - 10.00 P.M">9.00 P.M - 10.00 P.M</option>
+                    <option value="9.00 P.M - 11.00 P.M">9.00 P.M - 11.00 P.M</option>
+                    <option value="9.00 P.M - 12.00 A.M">9.00 P.M - 12.00 A.M</option>
+                    <option value="9.00 P.M - 1.00 A.M">9.00 P.M - 1.00 A.M</option>
+                    {/* 10 PM */}
+                    <option value="10.00 P.M - 11.00 P.M">10.00 P.M - 11.00 P.M</option>
+                    <option value="10.00 P.M - 12.00 A.M">10.00 P.M - 12.00 A.M</option>
+                    <option value="10.00 P.M - 1.00 A.M">10.00 P.M - 1.00 A.M</option>
+                    {/* 11 PM */}
+                    <option value="11.00 P.M - 12.00 A.M">11.00 P.M - 12.00 A.M</option>
+                    <option value="11.00 P.M - 1.00 A.M">11.00 P.M - 1.00 A.M</option>
+                    {/* 12 AM */}
+                    <option value="12.00 A.M - 1.00 A.M">12.00 A.M - 1.00 A.M</option>
+                    {/* other */}
+                    {/* <option value="10.00 A.M - 4.00 P.M">10.00 A.M - 4.00 P.M</option>
+                    <option value="5.00 P.M - 10.00 P.M">5.00 P.M - 10.00 P.M</option> */}
                   </select>
                 </div>
 
