@@ -14,7 +14,7 @@ import {
 const Traffic = () => {
     const [callData, setCallData] = useState([]);
     const [totalCallCount, setTotalCallCount] = useState(0);
-    const [range, setRange] = useState('7'); // Default to 7 days
+    const [range, setRange] = useState('30');
 
     useEffect(() => {
         axios
@@ -41,7 +41,7 @@ const Traffic = () => {
     }));
 
     return (
-        <div className="p-6 min-h-screen bg-gradient-to-br from-blue-50 to-white">
+        <div className="p-6 min-h-screen bg-gradient-to-br from-blue-50">
             <h2 className="text-3xl font-bold mb-6 text-blue-700 tracking-tight">
                 📈 Traffic Analytics
             </h2>
