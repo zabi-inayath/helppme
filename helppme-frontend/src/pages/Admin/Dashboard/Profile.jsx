@@ -26,31 +26,31 @@ const Profile = () => {
     "Disaster Management",
     "Women Helpline",
     "Child Helpline",
-    "Hospitals",
-    "Ambulance Services",
-    "Pharmacies & clinics",
-    "General Practitioners",
-    "Specialist Doctors",
-    "Electricians",
-    "Plumbers",
-    "Gas Agencies",
-    "Water Can Suppliers",
-    "Water Tanks",
-    "Car Rentals",
-    "Car Drivers",
-    "Travel Agencies",
-    "Ticket Booking Centers",
-    "Tour Guides",
-    "Municipal Corporations",
-    "Water Supply",
+    "Hospital",
+    "Ambulance Service",
+    "Pharmacy",
+    "Clinic",
+    "Doctor",
+    "Electrician",
+    "Plumber",
+    "Gas Agency",
+    "House Cleaner",
+    "Pest Control",
+    "Car Rental",
+    "Car Driver",
+    "Travel Agency",
+    "Auto Stand",
+    "Residency",
+    "Municipal Corporation",
+    "Water Supplier",
     "Electricity Board",
-    "Public Transport Info",
+    "E-Gov Center",
     "Postal Service",
-    "Tow Services",
-    "Bike Repair Shops",
-    "Auto Mechanics",
-    "Local Petrol Shops",
-    "SOS Repair Agents"
+    "Tow Service",
+    "Bike Repair Shop",
+    "Auto Mechanic",
+    "Local Petrol Shop",
+    "EV Power Hub"
   ];
 
   useEffect(() => {
@@ -58,22 +58,18 @@ const Profile = () => {
   }, [filterStatus]);
 
   const fetchApplications = async () => {
-    let apiURL = `${
-      import.meta.env.VITE_BACKEND_URL
-    }/api/services/enroll/allforms`;
+    let apiURL = `${import.meta.env.VITE_BACKEND_URL
+      }/api/services/enroll/allforms`;
 
     if (filterStatus === "Pending") {
-      apiURL = `${
-        import.meta.env.VITE_BACKEND_URL
-      }/api/services/enroll/pending`;
+      apiURL = `${import.meta.env.VITE_BACKEND_URL
+        }/api/services/enroll/pending`;
     } else if (filterStatus === "Rejected") {
-      apiURL = `${
-        import.meta.env.VITE_BACKEND_URL
-      }/api/services/enroll/rejected`;
+      apiURL = `${import.meta.env.VITE_BACKEND_URL
+        }/api/services/enroll/rejected`;
     } else if (filterStatus === "Approved") {
-      apiURL = `${
-        import.meta.env.VITE_BACKEND_URL
-      }/api/services/enroll/approved`;
+      apiURL = `${import.meta.env.VITE_BACKEND_URL
+        }/api/services/enroll/approved`;
     }
 
     try {
@@ -239,21 +235,20 @@ const Profile = () => {
                       <td className="p-2 sm:p-4">{app.email || "N/A"}</td>
                       <td className="p-2 sm:p-4">
                         <span
-                          className={`p-1 rounded text-xs ${
-                            getCategoryClass(app.category) === "emergency"
-                              ? "bg-red-100 text-red-700"
-                              : getCategoryClass(app.category) === "utilities"
+                          className={`p-1 rounded text-xs ${getCategoryClass(app.category) === "emergency"
+                            ? "bg-red-100 text-red-700"
+                            : getCategoryClass(app.category) === "utilities"
                               ? "bg-blue-100 text-blue-700"
                               : getCategoryClass(app.category) === "vehicle"
-                              ? "bg-[#FFC7B3] text-[#9F4729]"
-                              : getCategoryClass(app.category) === "travel"
-                              ? "bg-[#B3DEFF] text-[#006AFF]"
-                              : getCategoryClass(app.category) === "public"
-                              ? "bg-[#FFF1A5] text-[#AB9210]"
-                              : getCategoryClass(app.category) === "medical"
-                              ? "bg-[#CCEDED] text-[#0A8F91]"
-                              : "bg-gray-200 text-gray-600"
-                          }`}
+                                ? "bg-[#FFC7B3] text-[#9F4729]"
+                                : getCategoryClass(app.category) === "travel"
+                                  ? "bg-[#B3DEFF] text-[#006AFF]"
+                                  : getCategoryClass(app.category) === "public"
+                                    ? "bg-[#FFF1A5] text-[#AB9210]"
+                                    : getCategoryClass(app.category) === "medical"
+                                      ? "bg-[#CCEDED] text-[#0A8F91]"
+                                      : "bg-gray-200 text-gray-600"
+                            }`}
                         >
                           {app.category || "Unknown"}
                         </span>
@@ -261,26 +256,24 @@ const Profile = () => {
                       <td className="p-2 sm:p-4">{app.business_hours || "N/A"}</td>
                       <td className="p-2 sm:p-4">
                         <span
-                          className={`p-1 rounded text-xs ${
-                            getStatusClass(app.status) === "approved"
-                              ? "bg-green-100 text-green-700"
-                              : getStatusClass(app.status) === "pending"
+                          className={`p-1 rounded text-xs ${getStatusClass(app.status) === "approved"
+                            ? "bg-green-100 text-green-700"
+                            : getStatusClass(app.status) === "pending"
                               ? "bg-yellow-100 text-yellow-700"
                               : getStatusClass(app.status) === "rejected"
-                              ? "bg-red-100 text-red-700"
-                              : "bg-gray-200 text-gray-600"
-                          }`}
+                                ? "bg-red-100 text-red-700"
+                                : "bg-gray-200 text-gray-600"
+                            }`}
                         >
                           {app.status || "Pending"}
                         </span>
                       </td>
                       <td className="p-2 sm:p-4 text-center">
                         <button
-                          className={`cursor-pointer px-2 py-1 rounded transition-all duration-200 ${
-                            expandedId === app.id
-                              ? "bg-blue-100 text-blue-700"
-                              : "hover:bg-blue-50"
-                          }`}
+                          className={`cursor-pointer px-2 py-1 rounded transition-all duration-200 ${expandedId === app.id
+                            ? "bg-blue-100 text-blue-700"
+                            : "hover:bg-blue-50"
+                            }`}
                           onClick={() =>
                             setExpandedId(expandedId === app.id ? null : app.id)
                           }
@@ -295,11 +288,10 @@ const Profile = () => {
                         className="transition-all duration-500 overflow-hidden bg-gray-50"
                       >
                         <div
-                          className={`${
-                            expandedId === app.id
-                              ? "max-h-[1000px] p-2 sm:p-5"
-                              : "max-h-0 p-0"
-                          } transition-all duration-300 ease-in-out overflow-hidden`}
+                          className={`${expandedId === app.id
+                            ? "max-h-[1000px] p-2 sm:p-5"
+                            : "max-h-0 p-0"
+                            } transition-all duration-300 ease-in-out overflow-hidden`}
                         >
                           <div className="border border-gray-300 rounded-lg shadow-lg p-4 sm:p-6 space-y-2 max-w-full sm:max-w-2xl mx-auto bg-white">
                             {app.service_type && (
@@ -332,16 +324,16 @@ const Profile = () => {
                                 <span>{app.email}</span>
                               </div>
                             )}
-                            {app.service_category && (
-                              <div className="flex justify-between">
-                                <strong className="font-semibold">Service Category:</strong>
-                                <span>{app.service_category}</span>
-                              </div>
-                            )}
                             {app.category && (
                               <div className="flex justify-between">
                                 <strong className="font-semibold">Category:</strong>
                                 <span>{app.category}</span>
+                              </div>
+                            )}
+                            {app.service_category && (
+                              <div className="flex justify-between">
+                                <strong className="font-semibold">Service Category:</strong>
+                                <span>{app.service_category}</span>
                               </div>
                             )}
                             {app.aadhar_id && (
@@ -362,6 +354,12 @@ const Profile = () => {
                               <div className="flex justify-between">
                                 <strong className="font-semibold">Hospital Name:</strong>
                                 <span>{app.hospitalName}</span>
+                              </div>
+                            )}
+                            {app.working_day && (
+                              <div className="flex justify-between">
+                                <strong className="font-semibold">Working Day:</strong>
+                                <span>{app.working_day}</span>
                               </div>
                             )}
                             {app.business_name && (
@@ -468,12 +466,58 @@ const Profile = () => {
                                   onChange={e => setEditForm({ ...editForm, email: e.target.value })}
                                   placeholder="Email"
                                 />
-                                <input
-                                  className="w-full p-2 border rounded"
-                                  value={editForm.googleMapLink || ""}
-                                  onChange={e => setEditForm({ ...editForm, googleMapLink: e.target.value })}
-                                  placeholder="https://maps.app.goo.gl/LAjuAA1qhrZQZaQy9"
-                                />
+                                {/* Editable: Google Map Link (only for business type and if present) */}
+                                {typeof editForm.googleMapLink !== "undefined" &&
+                                  editForm.service_type === "business" && (
+                                    <input
+                                      className="w-full p-2 border rounded"
+                                      value={editForm.googleMapLink || ""}
+                                      onChange={e => setEditForm({ ...editForm, googleMapLink: e.target.value })}
+                                      placeholder="https://maps.app.goo.gl/LAjuAA1qhrZQZaQy9"
+                                    />
+                                  )}
+
+                                {/* Editable: Hospital Name */}
+                                {typeof editForm.hospitalName !== "undefined" &&
+                                  editForm.service_category === "Doctor" && (
+                                    <input
+                                      className="w-full p-2 border rounded"
+                                      value={editForm.hospitalName || ""}
+                                      onChange={e => setEditForm({ ...editForm, hospitalName: e.target.value })}
+                                      placeholder="Hospital Name"
+                                    />
+                                  )}
+
+                                {/* Editable: Working Day */}
+                                {typeof editForm.working_day !== "undefined" &&
+                                  editForm.service_category === "Doctor" && (
+                                    <select
+                                      className="w-full p-2 border rounded"
+                                      value={editForm.working_day || ""}
+                                      onChange={e => setEditForm({ ...editForm, working_day: e.target.value })}
+                                    >
+                                      <option value="">Select Working Day</option>
+                                      <option value="Mon-Sat">Mon - Sat</option>
+                                      <option value="Mon-Fri">Mon - Fri</option>
+                                      <option value="All Days">All Days</option>
+                                      <option value="Sunday Only">Sunday Only</option>
+                                      <option value="Mon-Sun">Mon - Sun</option>
+                                      <option value="Mon, Wed, Fri">Mon, Wed, Fri</option>
+                                      <option value="Tue, Thu, Sat">Tue, Thu, Sat</option>
+                                      <option value="Custom">Custom</option>
+                                    </select>
+                                  )}
+
+                                {/* Editable: Business Hours */}
+                                {typeof editForm.business_hours !== "undefined" && (
+                                  <input
+                                    className="w-full p-2 border rounded"
+                                    value={editForm.business_hours || ""}
+                                    onChange={e => setEditForm({ ...editForm, business_hours: e.target.value })}
+                                    placeholder="e.g. 6.00 A.M - 7.00 A.M"
+                                  />
+                                )}
+
                                 {/* --- Status Dropdown --- */}
                                 <select
                                   className="w-full p-2 border rounded"
@@ -534,61 +578,61 @@ const Profile = () => {
 
       {/* Mobile-only list (shows only on mobile) */}
       <div className="block sm:hidden">
-  {filteredApplications.map((app) => (
-    <div key={app.id} className="mb-3">
-      <div
-        className="rounded-lg shadow px-4 py-3 flex items-center cursor-pointer"
-        onClick={() => setExpandedId(expandedId === app.id ? null : app.id)}
-      >
-        <img
-          src={
-            app.image ||
-            "https://res.cloudinary.com/dhcfcubwa/image/upload/v1740481737/nooho00u6zzhbhqtzbxv.png"
-          }
-          alt={app.name || "User"}
-          className="w-10 h-10 rounded-full object-cover mr-3"
-        />
-        <span className="font-semibold text-base flex-1">{app.name || "Unknown"}</span>
-        <span className="text-blue-700 text-lg">{expandedId === app.id ? "▲" : "▼"}</span>
+        {filteredApplications.map((app) => (
+          <div key={app.id} className="mb-3">
+            <div
+              className="rounded-lg shadow px-4 py-3 flex items-center cursor-pointer"
+              onClick={() => setExpandedId(expandedId === app.id ? null : app.id)}
+            >
+              <img
+                src={
+                  app.image ||
+                  "https://res.cloudinary.com/dhcfcubwa/image/upload/v1740481737/nooho00u6zzhbhqtzbxv.png"
+                }
+                alt={app.name || "User"}
+                className="w-10 h-10 rounded-full object-cover mr-3"
+              />
+              <span className="font-semibold text-base flex-1">{app.name || "Unknown"}</span>
+              <span className="text-blue-700 text-lg">{expandedId === app.id ? "▲" : "▼"}</span>
+            </div>
+            {expandedId === app.id && (
+              <div className="w-full mt-1 bg-gray-50 rounded-b-lg p-3 shadow-inner">
+                {app.phone && (
+                  <div className="flex justify-between">
+                    <strong className="font-semibold">Phone:</strong>
+                    <span>{app.phone}</span>
+                  </div>
+                )}
+                {app.email && (
+                  <div className="flex justify-between">
+                    <strong className="font-semibold">Email:</strong>
+                    <span>{app.email}</span>
+                  </div>
+                )}
+                {app.category && (
+                  <div className="flex justify-between">
+                    <strong className="font-semibold">Category:</strong>
+                    <span>{app.category}</span>
+                  </div>
+                )}
+                {app.business_hours && (
+                  <div className="flex justify-between">
+                    <strong className="font-semibold">Business Hours:</strong>
+                    <span>{app.business_hours}</span>
+                  </div>
+                )}
+                {app.status && (
+                  <div className="flex justify-between">
+                    <strong className="font-semibold">Status:</strong>
+                    <span>{app.status}</span>
+                  </div>
+                )}
+                {/* Add more fields as needed */}
+              </div>
+            )}
+          </div>
+        ))}
       </div>
-      {expandedId === app.id && (
-        <div className="w-full mt-1 bg-gray-50 rounded-b-lg p-3 shadow-inner">
-          {app.phone && (
-            <div className="flex justify-between">
-              <strong className="font-semibold">Phone:</strong>
-              <span>{app.phone}</span>
-            </div>
-          )}
-          {app.email && (
-            <div className="flex justify-between">
-              <strong className="font-semibold">Email:</strong>
-              <span>{app.email}</span>
-            </div>
-          )}
-          {app.category && (
-            <div className="flex justify-between">
-              <strong className="font-semibold">Category:</strong>
-              <span>{app.category}</span>
-            </div>
-          )}
-          {app.business_hours && (
-            <div className="flex justify-between">
-              <strong className="font-semibold">Business Hours:</strong>
-              <span>{app.business_hours}</span>
-            </div>
-          )}
-          {app.status && (
-            <div className="flex justify-between">
-              <strong className="font-semibold">Status:</strong>
-              <span>{app.status}</span>
-            </div>
-          )}
-          {/* Add more fields as needed */}
-        </div>
-      )}
-    </div>
-  ))}
-</div>
     </div>
   );
 };

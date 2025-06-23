@@ -495,11 +495,11 @@ function EnrollForm() {
                         required
                       >
                         <option value="">Select working days</option>
-                        <option value="Mon-Sat">Mon-Sat</option>
-                        <option value="Mon-Fri">Mon-Fri</option>
+                        <option value="Mon-Sat">Mon - Sat</option>
+                        <option value="Mon-Fri">Mon - Fri</option>
                         <option value="All Days">All Days</option>
                         <option value="Sunday Only">Sunday Only</option>
-                        <option value="Mon-Sun">Mon-Sun</option>
+                        <option value="Mon-Sun">Mon - Sun</option>
                         <option value="Mon, Wed, Fri">Mon, Wed, Fri</option>
                         <option value="Tue, Thu, Sat">Tue, Thu, Sat</option>
                         <option value="Custom">Custom</option>
