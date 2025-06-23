@@ -12,6 +12,7 @@ import {
   ChevronRight,
   CornerUpRight
 } from "lucide-react";
+import axios from "axios";
 
 function Pharmacies() {
   const { id } = useParams();
