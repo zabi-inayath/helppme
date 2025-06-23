@@ -64,11 +64,11 @@ const WelcomeGuard = ({ children }) => {
   useEffect(() => {
     // Check if user has visited before
     const hasVisited = localStorage.getItem('hasVisitedApp');
-    
+
     if (!hasVisited) {
       // First time visitor
       setIsFirstVisit(true);
-      
+
       // If they're not already on welcome page, redirect them
       if (location.pathname !== '/welcome') {
         navigate('/welcome', { replace: true });
@@ -76,7 +76,7 @@ const WelcomeGuard = ({ children }) => {
     } else {
       // Returning visitor
       setIsFirstVisit(false);
-      
+
       // If they're on welcome page, redirect to beta
       if (location.pathname === '/welcome') {
         navigate('/beta', { replace: true });
@@ -84,20 +84,20 @@ const WelcomeGuard = ({ children }) => {
     }
   }, [location.pathname, navigate]);
 
-  
+
 
   // Show loading or children based on state
   if (isFirstVisit === null) {
     // Loading state - you can replace this with a loading component
-    return  <div className="flex items-center justify-center h-screen w-full">
-            <MutatingDots
-              visible={true}
-              height="100"
-              width="100"
-              color="#0175F3"
-              secondaryColor="#0175F3"
-            />
-          </div>;
+    return <div className="flex items-center justify-center h-screen w-full">
+      <MutatingDots
+        visible={true}
+        height="100"
+        width="100"
+        color="#0175F3"
+        secondaryColor="#0175F3"
+      />
+    </div>;
   }
 
   return children;
@@ -106,11 +106,11 @@ const WelcomeGuard = ({ children }) => {
 // Default Route Component
 const DefaultRoute = () => {
   const hasVisited = localStorage.getItem('hasVisitedApp');
-  
+
   if (!hasVisited) {
     return <Navigate to="/welcome" replace />;
   }
-  
+
   return <Navigate to="/beta" replace />;
 };
 
@@ -170,7 +170,7 @@ const App = () => {
         <Routes>
           {/* Default route - redirects based on visit status */}
           <Route path="/" element={<DefaultRoute />} />
-          
+
           {/* App Routes */}
           <Route path="/beta" element={<Essentials />} />
           <Route path="/welcome" element={<Boot />} />
@@ -214,7 +214,7 @@ const App = () => {
             element={<Localpetrolshops />}
           />
           <Route path="/vehicles/ev-power-hubs" element={<Sosrepairagents />} />
-          
+
           <Route path="/public" element={<Public />} />
           <Route
             path="/public/municipal-corporations"
@@ -227,7 +227,7 @@ const App = () => {
           />
           <Route path="/public/e-gov-centers" element={<Transportinfo />} />
           <Route path="/public/postal-service" element={<Postalservice />} />
-          
+
           <Route path="/travel" element={<Travel />} />
           <Route path="/travel/car-rentals" element={<Carrentals />} />
           <Route path="/travel/car-drivers" element={<Cardrivers />} />

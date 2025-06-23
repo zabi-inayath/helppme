@@ -122,14 +122,14 @@ function Doctors() {
 
       <div className="px-26 pt-4 space-y-4">
         {/* Filter Dropdown */}
-        <div>
+        <div className="relative w-full max-w-md mx-auto">
           <label className="block text-[#0175F3] text-center font-medium mb-2">
             Medical Speciality
           </label>
           <select
             value={selectedSpeciality}
             onChange={(e) => setSelectedSpeciality(e.target.value)}
-            className="w-full p-2 pl-4 border rounded-lg text-gray-700"
+            className="w-full p-2 pl-4 pr-10 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-200 appearance-none"
           >
             {medicalSpecialties.map((spec, index) => (
               <option key={index} value={spec}>
@@ -137,6 +137,10 @@ function Doctors() {
               </option>
             ))}
           </select>
+          {/* Custom arrow icon */}
+          <span className="text-[#0075f2] pointer-events-none absolute right-4 top-13.5 transform -translate-y-1/2">
+            ▼
+          </span>
         </div>
       </div>
 
@@ -175,6 +179,18 @@ function Doctors() {
                 />
                 <a
                   href={`tel:${contact.phone}`}
+                  onClick={async (e) => {
+                    // Handle call count update
+                    console.log("Call button clicked for contact:", contact.name);
+                    try {
+                      await axios.post(
+                        `${import.meta.env.VITE_BACKEND_URL}/api/services/call/${contact.id}`
+                      );
+                      // Optionally: toast.success("Call count updated!");
+                    } catch (err) {
+                      // Optionally: toast.error("Failed to update call count");
+                    }
+                  }}
                   className="flex items-center space-x-2 bg-blue-100 text-blue-600 px-3 py-1.5 rounded-lg"
                 >
                   <img
@@ -245,16 +261,6 @@ function Doctors() {
                   </p>
                 </div>
 
-                <div>
-                  <h4 className="text-sm font-semibold text-gray-800">
-                    Hospital / Clinic
-                  </h4>
-                  <p className="text-sm text-gray-600 flex items-center gap-2">
-                    <Building2 className="w-4 h-4" />
-                    {selectedContact.hospitalName}
-                  </p>
-                </div>
-
                 {/* Working Day */}
                 <div>
                   <h4 className="text-sm font-semibold text-gray-800">
@@ -265,6 +271,18 @@ function Doctors() {
                     {selectedContact.working_day || "N/A"}
                   </p>
                 </div>
+
+                <div>
+                  <h4 className="text-sm font-semibold text-gray-800">
+                    Hospital / Clinic
+                  </h4>
+                  <p className="text-sm text-gray-600 flex items-center gap-2">
+                    <Building2 className="w-4 h-4" />
+                    {selectedContact.hospitalName}
+                  </p>
+                </div>
+
+                
               </div>
 
               <div className="px-4 pb-5 space-y-3">
@@ -279,6 +297,18 @@ function Doctors() {
                 </a>
                 <a
                   href={`tel:${selectedContact.phone}`}
+                  onClick={async (e) => {
+                    // Handle call count update
+                    console.log("Call button clicked for contact:", selectedContact.name);
+                    try {
+                      await axios.post(
+                        `${import.meta.env.VITE_BACKEND_URL}/api/services/call/${selectedContact.id}`
+                      );
+                      // Optionally: toast.success("Call count updated!");
+                    } catch (err) {
+                      // Optionally: toast.error("Failed to update call count");
+                    }
+                  }}
                   className="block text-center w-full bg-blue-600 text-white py-2 rounded-lg text-lg hover:bg-blue-700 transition flex justify-center items-center gap-2"
                 >
                   <Phone className="w-5 h-5" />

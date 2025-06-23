@@ -4,6 +4,9 @@ fy40ypI}F*Xc80oW
 sudo nano /etc/nginx/sites-available/helppme.in.conf
 sudo nano /etc/nginx/sites-available/api.helppme.in.conf
 
+sudo nginx -t
+sudo systemctl reload nginx
+
 sudo mysql -u root -p
 Fakhi@2025
 
@@ -39,6 +42,10 @@ ALTER TABLE services MODIFY aadhar_id CHAR(15);
 
 ALTER TABLE services RENAME COLUMN hospital TO hospitalName;
 
+ALTER TABLE your_new_table_name
+ADD COLUMN new_column_name DATA_TYPE;
+
+ALTER TABLE helppme ADD COLUMN call_count INT;
 
 
 Default home.jsx

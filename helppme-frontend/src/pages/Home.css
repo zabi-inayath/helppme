@@ -32,6 +32,28 @@ body {
   transform: translateY(-5px);
 }
 
+/* Add this CSS to your global stylesheet or inside a <style> tag in your Essentials.jsx file */
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: none;
+  scrollbar-color: rgba(0, 0, 0, 0.08) transparent;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 640px) {
   .header h1 {
