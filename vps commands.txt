@@ -47,6 +47,8 @@ ADD COLUMN new_column_name DATA_TYPE;
 
 ALTER TABLE helppme ADD COLUMN call_count INT;
 
+CREATE TABLE service_calls (id INT AUTO_INCREMENT PRIMARY KEY, service_id INT, called_at DATETIME DEFAULT CURRENT_TIMESTAMP);
+
 
 Default home.jsx
 import React, { useEffect, useState } from "react";

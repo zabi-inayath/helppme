@@ -238,17 +238,16 @@ exports.trafficAnalytics = async (req, res) => {
 // Get call count grouped by date (adjust column/table names as needed)
 exports.callTraffic = async (req, res) => {
   try {
-    const range = parseInt(req.query.range) || 7; // Default to 7 days
+    const range = parseInt(req.query.range) || 7;
     const [rows] = await pool.query(
-      `SELECT DATE(created_at) AS date, SUM(call_count) AS call_count
-       FROM services
-       WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL ? DAY)
-       GROUP BY DATE(created_at)
-       ORDER BY DATE(created_at) DESC
-       LIMIT ?`,
-      [range, range]
+      `SELECT DATE(called_at) AS date, COUNT(*) AS call_count
+       FROM service_calls
+       WHERE called_at >= DATE_SUB(CURDATE(), INTERVAL ? DAY)
+       GROUP BY DATE(called_at)
+       ORDER BY DATE(called_at) ASC`,
+      [range]
     );
-    res.json(rows.reverse()); // reverse for chronological order
+    res.json(rows);
   } catch (err) {
     console.error('Error fetching call traffic:', err);
     res.status(500).json({ error: 'Internal server error' });

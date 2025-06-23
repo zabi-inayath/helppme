@@ -28,17 +28,24 @@ const Traffic = () => {
             .catch(() => setTotalCallCount(0));
     }, [range]);
 
-    // Prepare chart data with formatted date
-    const chartData = callData.map((row) => ({
-        ...row,
-        formattedDate: row.date
-            ? new Date(row.date).toLocaleDateString("en-GB", {
-                day: "2-digit",
-                month: "short",
-                year: "numeric"
-            })
-            : ""
-    }));
+    // Prepare chart data with formatted date and sort by date ascending
+    // Prepare chart data (ascending order for chart)
+    const chartData = callData
+        .map((row) => ({
+            ...row,
+            formattedDate: row.date
+                ? new Date(row.date).toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                })
+                : ""
+        }))
+        .sort((a, b) => new Date(a.date) - new Date(b.date)); // Ascending (oldest to newest)
+
+    // Table data: reverse chartData for table so today shows first
+    const tableData = [...chartData].reverse();
+
 
     return (
         <div className="p-6 min-h-screen bg-gradient-to-br from-blue-50">
@@ -134,14 +141,14 @@ const Traffic = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {chartData.length === 0 ? (
+                            {tableData.length === 0 ? (
                                 <tr>
                                     <td colSpan={2} className="py-6 text-center text-gray-400">
                                         No data available
                                     </td>
                                 </tr>
                             ) : (
-                                chartData.map((row, idx) => (
+                                tableData.map((row, idx) => (
                                     <tr
                                         key={idx}
                                         className="transition hover:bg-blue-50"
@@ -156,6 +163,7 @@ const Traffic = () => {
                                 ))
                             )}
                         </tbody>
+
                     </table>
                 </div>
             </div>

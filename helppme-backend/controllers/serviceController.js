@@ -155,13 +155,15 @@ exports.incrementCallCount = async (req, res) => {
   if (!id) return res.status(400).json({ success: false, message: "Service ID required" });
 
   try {
+    // Increment call_count in services table
     await pool.query("UPDATE services SET call_count = IFNULL(call_count,0) + 1 WHERE id = ?", [id]);
-    res.json({ success: true, message: "Call count incremented" });
+    // Insert a call log into service_calls table
+    await pool.query("INSERT INTO service_calls (service_id) VALUES (?)", [id]);
+    res.json({ success: true, message: "Call count incremented and call logged" });
   } catch (err) {
-    res.status(500).json({ success: false, message: "Failed to increment call count" });
+    res.status(500).json({ success: false, message: "Failed to increment call count and log call" });
   }
 };
-
 // // Approve Service
 // exports.approveService = async (req, res) => {
 //   const { id } = req.params;
