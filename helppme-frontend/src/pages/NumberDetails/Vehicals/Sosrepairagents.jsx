@@ -40,7 +40,18 @@ function Sosrepairagents() {
       </div>
     );
   }
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) {
+    return (
+      <div className="relative flex justify-center items-center h-screen overflow-hidden">
+        {/* Blurred Background */}
+        <div className="absolute inset-0 bg-white bg-opacity-80 backdrop-blur-md"></div>
+
+        {/* Error Message */}
+        <div className="z-10 text-lg text-red-800 font-medium">Something went wrong!</div>
+        {console.log(error)}
+      </div>
+    );
+  }
 
   const contacts = data
     .filter((item) => item.service_category === "EV Power Hub")

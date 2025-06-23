@@ -213,6 +213,10 @@ function PendingApplications() {
                     <span>{app.hospitalName}</span>
                   </div>
                   <div className="flex justify-between">
+                    <strong className="font-semibold">Workind Day:</strong>
+                    <span>{app.working_day}</span>
+                  </div>
+                  <div className="flex justify-between">
                     <strong className="font-semibold">Google Map Link:</strong>
                     <span>{app.googleMapLink}</span>
                   </div>

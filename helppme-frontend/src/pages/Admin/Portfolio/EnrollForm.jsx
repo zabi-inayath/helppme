@@ -141,6 +141,7 @@ function EnrollForm() {
       image: formData.imageUrl,
       service_type: accountType,
       hospitalName: formData.hospitalName,
+      working_day: formData.working_day,
       googleMapLink: formData.googleMapLink,
       message: formData.message,
       ...(accountType === "individual" &&
@@ -241,16 +242,16 @@ function EnrollForm() {
           <img
             src="https://res.cloudinary.com/dhcfcubwa/image/upload/v1750310021/Vector_dokjco.png"
             alt="Success"
-            className="w-20 h-20 mb-6"
+            className="w-auto h-20 mb-6"
           />
-          <h2 className="text-xl font-semibold text-gray-700 mb-2">
+          <h2 className="text-s md:text-xl font-semibold text-gray-700 mb-2">
             Application has been submitted
           </h2>
-          <p className="text-gray-500 text-center">
+          <p className="text-gray-500 text-xs md:text-xl text-center">
             You’ll be notified once your application is approved
           </p>
           <button
-            className="mt-6 px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            className="mt-6 px-6 py-2 bg-[#0075f2] text-white rounded hover:bg-blue-700 transition"
             onClick={() => {
               setIsSubmitted(false);
               setShowForm(true);
@@ -468,7 +469,7 @@ function EnrollForm() {
                       </select>
                     </div>
 
-                    {/* New Field: Hospital Name */}
+                    {/*Hospital Name */}
                     <div className={styles.formGroup}>
                       <label className={styles.formGroupLabel}>Hospital Name</label>
                       <input
@@ -481,6 +482,31 @@ function EnrollForm() {
                         className={styles.formGroupInput}
                         required
                       />
+                    </div>
+
+                    {/*Working Days Combination */}
+                    <div className={styles.formGroup}>
+                      <label className={styles.formGroupLabel}>Working Days</label>
+                      <select
+                        name="working_day"
+                        value={formData.working_day || ""}
+                        onChange={handleChange}
+                        className={styles.formGroupSelect}
+                        required
+                      >
+                        <option value="">Select working days</option>
+                        <option value="Mon-Sat">Mon-Sat</option>
+                        <option value="Mon-Fri">Mon-Fri</option>
+                        <option value="All Days">All Days</option>
+                        <option value="Sunday Only">Sunday Only</option>
+                        <option value="Mon-Sun">Mon-Sun</option>
+                        <option value="Mon, Wed, Fri">Mon, Wed, Fri</option>
+                        <option value="Tue, Thu, Sat">Tue, Thu, Sat</option>
+                        <option value="Custom">Custom</option>
+                      </select>
+                      <small style={{ color: "#888" }}>
+                          For custom working days, please mention in the message box below
+                      </small>
                     </div>
                   </>
                 )}

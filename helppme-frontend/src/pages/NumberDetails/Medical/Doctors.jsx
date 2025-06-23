@@ -9,7 +9,8 @@ import {
   Clock3,
   Building2,
   Phone,
-  CornerUpRight
+  CornerUpRight,
+  CalendarDays
 } from "lucide-react";
 
 function Doctors() {
@@ -42,7 +43,18 @@ function Doctors() {
       </div>
     );
   }
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) {
+    return (
+      <div className="relative flex justify-center items-center h-screen overflow-hidden">
+        {/* Blurred Background */}
+        <div className="absolute inset-0 bg-white bg-opacity-80 backdrop-blur-md"></div>
+
+        {/* Error Message */}
+        <div className="z-10 text-lg text-red-800 font-medium">Something went wrong!</div>
+        {console.log(error)}
+      </div>
+    );
+  }
 
   const medicalSpecialties = [
     "All",
@@ -81,7 +93,8 @@ function Doctors() {
       service_category: item.service_category,
       business_hours: item.business_hours,
       medical_speciality: item.medical_speciality,
-      hospitalName: item.hospitalName
+      hospitalName: item.hospitalName,
+      working_day: item.working_day,
     }));
 
   return (
@@ -140,18 +153,18 @@ function Doctors() {
               className="flex border-b-1 border-gray-400 items-center justify-between px-4 py-3"
             >
               <div className="flex items-center space-x-3">
-  <img
-    src={contact.image}
-    alt={contact.name}
-    className="w-12 h-12 rounded-full"
-  />
-  <div>
-    <h3 className="text-gray-900 font-medium">
-      {contact.name.length > 15 ? contact.name.substring(0, 15) + "..." : contact.name}
-    </h3>
-    <p className="text-gray-500 text-sm">{contact.location.length > 15 ? contact.location.substring(0, 18) + "..." : contact.location}</p>
-  </div>
-</div>
+                <img
+                  src={contact.image}
+                  alt={contact.name}
+                  className="w-12 h-12 rounded-full"
+                />
+                <div>
+                  <h3 className="text-gray-900 font-medium">
+                    {contact.name.length > 15 ? contact.name.substring(0, 15) + "..." : contact.name}
+                  </h3>
+                  <p className="text-gray-500 text-sm">{contact.location.length > 15 ? contact.location.substring(0, 18) + "..." : contact.location}</p>
+                </div>
+              </div>
 
               <div className="flex">
                 <img
@@ -241,6 +254,17 @@ function Doctors() {
                     {selectedContact.hospitalName}
                   </p>
                 </div>
+
+                {/* Working Day */}
+                <div>
+                  <h4 className="text-sm font-semibold text-gray-800">
+                    Working Day
+                  </h4>
+                  <p className="text-sm text-gray-600 flex items-center gap-2">
+                    <CalendarDays className="w-4 h-4" />
+                    {selectedContact.working_day || "N/A"}
+                  </p>
+                </div>
               </div>
 
               <div className="px-4 pb-5 space-y-3">
@@ -250,7 +274,7 @@ function Doctors() {
                   rel="noopener noreferrer"
                   className="w-full bg-red-100 text-red-500 text-lg py-2 rounded-lg hover:bg-red-200 transition flex justify-center items-center gap-2"
                 >
-                 <CornerUpRight className="w-5 h-5" />
+                  <CornerUpRight className="w-5 h-5" />
                   Directions
                 </a>
                 <a

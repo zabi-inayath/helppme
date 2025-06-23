@@ -40,7 +40,18 @@ function Hospitals() {
       </div>
     );
   }
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) {
+    return (
+      <div className="relative flex justify-center items-center h-screen overflow-hidden">
+        {/* Blurred Background */}
+        <div className="absolute inset-0 bg-white bg-opacity-80 backdrop-blur-md"></div>
+
+        {/* Error Message */}
+        <div className="z-10 text-lg text-red-800 font-medium">Something went wrong!</div>
+        {console.log(error)}
+      </div>
+    );
+  }
 
   const contacts = data
     .filter((item) => item.service_category === "Hospital")
@@ -347,18 +358,18 @@ function Hospitals() {
                   {/* Call Button */}
                   <a
                     href={`tel:${selectedContact.phone}`}
-                      onClick={async (e) => {
-                        // Handle call count update
-                        console.log("Call button clicked for contact:", selectedContact.name);
-                        try {
-                          await axios.post(
-                            `${import.meta.env.VITE_BACKEND_URL}/api/services/call/${selectedContact.id}`
-                          );
-                          // Optionally: toast.success("Call count updated!");
-                        } catch (err) {
-                          // Optionally: toast.error("Failed to update call count");
-                        }
-                      }}
+                    onClick={async (e) => {
+                      // Handle call count update
+                      console.log("Call button clicked for contact:", selectedContact.name);
+                      try {
+                        await axios.post(
+                          `${import.meta.env.VITE_BACKEND_URL}/api/services/call/${selectedContact.id}`
+                        );
+                        // Optionally: toast.success("Call count updated!");
+                      } catch (err) {
+                        // Optionally: toast.error("Failed to update call count");
+                      }
+                    }}
                     className="block text-center w-full bg-blue-600 text-white py-2 rounded-lg text-lg hover:bg-blue-700 transition flex justify-center items-center gap-2"
                   >
                     <Phone className="w-5 h-5" />

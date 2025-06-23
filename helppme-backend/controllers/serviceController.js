@@ -39,6 +39,7 @@ exports.enrollService = async (req, res) => {
     aadhar_id,
     service_type,
     hospitalName,
+    working_day,
     googleMapLink,
     message
   } = req.body;
@@ -65,7 +66,7 @@ exports.enrollService = async (req, res) => {
 
   try {
     const query =
-      "INSERT INTO services (name, phone, email, category, service_category, location, image, business_hours, medical_speciality, aadhar_id, service_type, hospitalName, googleMapLink, message) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      "INSERT INTO services (name, phone, email, category, service_category, location, image, business_hours, medical_speciality, aadhar_id, service_type, hospitalName, working_day, googleMapLink, message) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     await pool.query(query, [
       name,
       phone,
@@ -79,6 +80,7 @@ exports.enrollService = async (req, res) => {
       aadhar_id,
       service_type,
       hospitalName,
+      working_day,
       googleMapLink,
       message
     ]);

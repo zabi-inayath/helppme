@@ -18,7 +18,7 @@ function Localpetrolshops() {
   const [selectedContact, setSelectedContact] = useState(null);
 
   const { data, loading, error } = useUserStore();
- const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -27,19 +27,30 @@ function Localpetrolshops() {
     return () => clearTimeout(timer);
   }, []);
   if (isLoading || loading) {
-      return (
-        <div className="flex items-center justify-center h-screen w-full">
-          <MutatingDots
-            visible={true}
-            height="100"
-            width="100"
-            color="#0175F3"
-            secondaryColor="#0175F3"
-          />
-        </div>
-      );
-    }
-  if (error) return <div>Error: {error.message}</div>;
+    return (
+      <div className="flex items-center justify-center h-screen w-full">
+        <MutatingDots
+          visible={true}
+          height="100"
+          width="100"
+          color="#0175F3"
+          secondaryColor="#0175F3"
+        />
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div className="relative flex justify-center items-center h-screen overflow-hidden">
+        {/* Blurred Background */}
+        <div className="absolute inset-0 bg-white bg-opacity-80 backdrop-blur-md"></div>
+
+        {/* Error Message */}
+        <div className="z-10 text-lg text-red-800 font-medium">Something went wrong!</div>
+        {console.log(error)}
+      </div>
+    );
+  }
 
   const contacts = data
     .filter((item) => item.service_category === "Local Petrol Shop")
@@ -334,7 +345,7 @@ function Localpetrolshops() {
       </AnimatePresence>
     </motion.div>
   );
-      }
-      
+}
+
 
 export default Localpetrolshops;
