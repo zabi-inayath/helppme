@@ -152,7 +152,7 @@ const AdminLogin = () => {
                 Security Verification
               </h2>
               <p className="text-center text-blue-500 mb-6 text-base">
-                Enter the security code to access the admin panel.
+                Enter google authenticator code to proceed 
               </p>
               <form onSubmit={handleSecurityCodeSubmit} className="space-y-7">
                 <div>
