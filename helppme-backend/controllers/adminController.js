@@ -253,3 +253,38 @@ exports.callTraffic = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+const speakeasy = require("speakeasy");
+const qrcode = require("qrcode");
+
+// Generate a secret for the admin 
+exports.generateTOTPSecret = async (req, res) => {
+  const secret = speakeasy.generateSecret({ name: "Helppme Admin" });
+  
+  const qr = await qrcode.toDataURL(secret.otpauth_url);
+  res.json({ secret: secret.base32, qr });
+};
+
+// Validate TOTP code
+exports.verifyTOTP = async (req, res) => {
+  const { code } = req.body;
+  try {
+    const commonSecret = process.env.TOTP_SECRET; 
+    if (!commonSecret) return res.status(500).json({ success: false, error: "No TOTP secret set" });
+
+    const verified = require("speakeasy").totp.verify({
+      secret: commonSecret,
+      encoding: "base32",
+      token: code,
+      window: 1,
+    });
+
+    if (verified) {
+      res.json({ success: true });
+    } else {
+      res.status(401).json({ success: false });
+    }
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+};

@@ -32,15 +32,9 @@ const AdminLogin = () => {
 
   const handleSecurityKeyDown = (e, idx) => {
     if (e.key === "Backspace") {
-      if (securityCode[idx]) {
-        // Clear current
-        const newCode = [...securityCode];
-        newCode[idx] = "";
-        setSecurityCode(newCode);
-      } else if (idx > 0) {
-        // Move to previous
-        inputRefs[idx - 1].current.focus();
-      }
+      setSecurityCode(["", "", "", "", "", ""]);
+      inputRefs[0].current.focus();
+      e.preventDefault();
     }
   };
 
@@ -56,15 +50,35 @@ const AdminLogin = () => {
     e.preventDefault();
   };
 
-  const handleSecurityCodeSubmit = (e) => {
+  // const handleSecurityCodeSubmit = (e) => {
+  //   e.preventDefault();
+  //   const code = securityCode.join("");
+  //   if (code === SECURITY_CODE) {
+  //     setAccessGranted(true);
+  //   } else {
+  //     toast.error("Invalid security code. Access denied.");
+  //     setSecurityCode(["", "", "", "", "", ""]);
+  //     inputRefs[0].current.focus();
+  //   }
+  // };
+
+  const handleSecurityCodeSubmit = async (e) => {
     e.preventDefault();
     const code = securityCode.join("");
-    if (code === SECURITY_CODE) {
-      setAccessGranted(true);
-    } else {
-      toast.error("Invalid security code. Access denied.");
-      setSecurityCode(["", "", "", "", "", ""]);
-      inputRefs[0].current.focus();
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/admin/verify-totp`,
+        { code, username: formData.username }
+      );
+      if (res.data.success) {
+        setAccessGranted(true);
+      } else {
+        toast.error("Invalid code. Try again.");
+        setSecurityCode(["", "", "", "", "", ""]);
+        inputRefs[0].current.focus();
+      }
+    } catch {
+      toast.error("Error verifying code.");
     }
   };
 

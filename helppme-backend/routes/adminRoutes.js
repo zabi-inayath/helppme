@@ -8,7 +8,9 @@ const {
   adminDetails,
   editService,
   trafficAnalytics,
-  callTraffic
+  callTraffic,
+  generateTOTPSecret,
+  verifyTOTP
 } = require("../controllers/adminController");
 const authMiddleware = require("../middleware/authMiddleware");
 const router = express.Router();
@@ -23,6 +25,9 @@ router.put("/edit/:id", authMiddleware, editService);
 
 router.get("/total-call-count", trafficAnalytics);
 router.get("/call-traffic", callTraffic);
+
+router.get("/totp-setup", generateTOTPSecret);
+router.post("/verify-totp", verifyTOTP);
 
 router.get("/details", adminDetails);
 
