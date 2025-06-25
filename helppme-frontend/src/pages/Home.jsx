@@ -158,8 +158,7 @@ const App = () => {
     "/admin/login",
     "/admin/dashboard",
     "/enroll",
-    "/welcome",
-    "/"
+    "/welcome"
   ];
 
   return (
@@ -169,7 +168,7 @@ const App = () => {
         {!noHeaderPaths.includes(location.pathname) && <Header />}
         <Routes>
           {/* Default route - redirects based on visit status */}
-          <Route path="/" element={<DefaultRoute />} />
+          {/* <Route path="/" element={<DefaultRoute />} /> */}
 
           {/* App Routes */}
           <Route path="/" element={<Essentials />} />
