@@ -265,7 +265,7 @@ function Ticketbookingcenters() {
                         {selectedContact.name}
                       </h2>
                       <div className="flex items-center gap-1 text-xs text-gray-600">
-                        {selectedContact.location ? (
+                        {selectedContact.aadhar_id ? (
                           <>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
