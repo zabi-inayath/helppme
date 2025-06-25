@@ -57,7 +57,7 @@
             text-align: center;
 
             /* Add smooth floating to all content */
-            animation: floatAll 8s ease-in-out infinite alternate;
+            animation: floatAll 6s ease-in-out infinite alternate;
             will-change: transform;
         }
 
@@ -65,7 +65,7 @@
             font-size: clamp(2.5rem, 8vw, 3rem);
             font-weight: 700;
             text-transform: uppercase;
-            text-align: left;
+            text-align: center;
             line-height: 1.1;
             margin-bottom: 40px;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -77,8 +77,8 @@
             font-weight: 400;
             opacity: 0.9;
             margin-bottom: 60px;
-            text-align: left;
-            justify-content: left;
+            text-align: center;
+            justify-content: center;
         }
 
         .countdown-container {
@@ -104,7 +104,7 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-            animation: floatAll 8s ease-in-out infinite alternate;
+            animation: floatAll 4s ease-in-out infinite alternate;
             will-change: transform;
         }
 
@@ -123,7 +123,7 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             transition: transform 0.2s ease;
 
-            animation: floatAll 8s ease-in-out infinite alternate;
+            animation: floatAll 4s ease-in-out infinite alternate;
             will-change: transform;
         }
 
@@ -134,7 +134,7 @@
             text-transform: capitalize;
             letter-spacing: 1px;
 
-            animation: floatAll 8s ease-in-out infinite alternate;
+            animation: floatAll 4s ease-in-out infinite alternate;
             will-change: transform;
         }
 
@@ -195,36 +195,69 @@
         }
 
         @media (max-width: 768px) {
-            .countdown-container {
-                gap: 20px;
-            }
-
-            .countdown-box {
-                min-width: 90px;
-                min-height: 90px;
-                padding: 20px 15px;
-                border-radius: 15px;
-            }
-
             .main-title {
-                margin-bottom: 15px;
+                font-size: 2rem;
+                margin-bottom: 20px;
+                text-align: center;
             }
 
             .subtitle {
-                margin-bottom: 40px;
+                font-size: 1.1rem;
+                margin-bottom: 30px;
+                text-align: center;
             }
-        }
 
-        @media (max-width: 480px) {
             .countdown-container {
                 gap: 15px;
             }
 
             .countdown-box {
-                min-width: 75px;
-                min-height: 75px;
+                min-width: 80px;
+                min-height: 80px;
                 padding: 15px 10px;
                 border-radius: 12px;
+            }
+
+            .countdown-number {
+                font-size: 2rem;
+            }
+
+            .countdown-label {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .countdown-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .countdown-box {
+                min-width: 70px;
+                min-height: 70px;
+                padding: 10px 6px;
+                border-radius: 10px;
+            }
+
+            .countdown-number {
+                font-size: 1.3rem;
+            }
+
+            .countdown-label {
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -255,8 +288,7 @@
 
     <script>
         const targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + 1);
-        targetDate.setHours(16, 0, 0, 0);
+        targetDate.setHours(16, 0, 0, 0); // Today at 16:00:00
 
         function updateCountdown() {
             const now = new Date();
