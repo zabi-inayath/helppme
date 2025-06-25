@@ -279,11 +279,11 @@ function Ticketbookingcenters() {
                                 fill="#299320"
                               />
                             </svg>
-                            Verified
+                            Aadhar Verified
                           </>
                         ) : (
                           <span className="text-red-600 font-medium">
-                            Not verified
+                            Aadhar Not verified
                           </span>
                         )}
                       </div>
