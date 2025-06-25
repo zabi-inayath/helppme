@@ -295,9 +295,10 @@
             const timeLeft = targetDate - now;
 
             if (timeLeft <= 0) {
-                document.getElementById('mainTitle').textContent = "WE'RE LIVE!";
-                document.querySelector('.subtitle').textContent = "Welcome to our platform";
+                document.getElementById('mainTitle').innerHTML = "<h3>Finalizing configurations <br> Thank you for your patience!</h3>";
+                document.querySelector('.subtitle').textContent = "Setting up the server... Hang tight!";
                 document.querySelector('.countdown-container').style.display = 'none';
+                messages = ["Thank you for your patience!"];
                 return;
             }
 
@@ -334,27 +335,7 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // Title cycling
-        const messages = [
-            "Just a little more time ",
-            "We’ll be live shortly!",
-            "Something awesome is coming up!",
-            "The wait is almost over...",
-            "Getting things ready..."
-        ];
-        let currentIndex = 0;
-        const titleElement = document.getElementById('mainTitle');
-
-        function cycleMessages() {
-            titleElement.style.opacity = '0';
-            titleElement.style.transform = 'translateY(10px)';
-            setTimeout(() => {
-                currentIndex = (currentIndex + 1) % messages.length;
-                titleElement.textContent = messages[currentIndex];
-                titleElement.style.opacity = '1';
-                titleElement.style.transform = 'translateY(0)';
-            }, 500);
-        }
+        
 
         setInterval(cycleMessages, 3000);
     </script>
