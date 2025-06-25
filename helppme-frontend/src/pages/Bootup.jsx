@@ -14,7 +14,7 @@ const Log = () => {
         className="w-18 h-18 bg-white rounded-full flex items-center justify-center text-xl mb-5 mt-15 cursor-pointer border-none text-white hover:bg-gray-200 transition-all duration-400 button-entrance"
         onClick={() => {
             localStorage.setItem('hasVisitedApp', 'true');
-            window.location.href = '/beta';
+            window.location.href = '/';
             }
         }x
       >

@@ -79,7 +79,7 @@ const WelcomeGuard = ({ children }) => {
 
       // If they're on welcome page, redirect to beta
       if (location.pathname === '/welcome') {
-        navigate('/beta', { replace: true });
+        navigate('/', { replace: true });
       }
     }
   }, [location.pathname, navigate]);
@@ -111,7 +111,7 @@ const DefaultRoute = () => {
     return <Navigate to="/welcome" replace />;
   }
 
-  return <Navigate to="/beta" replace />;
+  return <Navigate to="/" replace />;
 };
 
 const App = () => {
@@ -172,7 +172,7 @@ const App = () => {
           <Route path="/" element={<DefaultRoute />} />
 
           {/* App Routes */}
-          <Route path="/beta" element={<Essentials />} />
+          <Route path="/" element={<Essentials />} />
           <Route path="/welcome" element={<Boot />} />
 
           <Route path="/emergency" element={<Emergency />} />
@@ -242,7 +242,7 @@ const App = () => {
           <Route path="/enroll" element={<Portfolio />} />
 
           {/* Catch-all route for unknown paths */}
-          <Route path="*" element={<Navigate to="/beta" />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         <Toaster position="top-center" reverseOrder={true} />
       </div>
