@@ -16,6 +16,7 @@ const app = express();
 const allowedOrigins = [
   "http://103.235.106.138",
   "https://helppme.in",
+  "https://www.helppme.in",
   "https://api.helppme.in",
   "https://admin.helppme.in",
   "https://helppme-in-frontend.vercel.app",
