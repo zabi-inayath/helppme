@@ -78,7 +78,7 @@ const AdminLogin = () => {
         inputRefs[0].current.focus();
       }
     } catch {
-      toast.error("Error verifying code.");
+      toast.error("Enter vaild code to proceed");
     }
   };
 
@@ -98,7 +98,6 @@ const AdminLogin = () => {
         formData
       );
       localStorage.setItem("adminToken", response.data.token);
-      localStorage.setItem("Company", response.data.username);
       toast.success("Login Successful!");
       navigate("/admin/dashboard");
     } catch (error) {
@@ -152,9 +151,13 @@ const AdminLogin = () => {
                 Security Verification
               </h2>
               <p className="text-center text-blue-500 mb-6 text-base">
-                Enter google authenticator code to proceed 
+                Enter google authenticator code to proceed
               </p>
-              <form onSubmit={handleSecurityCodeSubmit} className="space-y-7">
+              <form
+                onSubmit={handleSecurityCodeSubmit}
+                className="space-y-7"
+                autoComplete="one-time-code"
+              >
                 <div>
                   <label className="block text-blue-700 font-semibold mb-3 text-center">
                     6-Digit Security Code
@@ -164,17 +167,19 @@ const AdminLogin = () => {
                       <input
                         key={idx}
                         ref={inputRefs[idx]}
-                        type="password"
+                        type="text" // changed from "password"
                         inputMode="numeric"
                         maxLength={1}
                         value={num}
+                        name={`security-code-${idx}`} // unique name
                         autoFocus={idx === 0}
                         onChange={(e) => handleSecurityInput(e, idx)}
                         onKeyDown={(e) => handleSecurityKeyDown(e, idx)}
                         onPaste={handleSecurityPaste}
+                        autoComplete="one-time-code"
                         className={`w-10 h-12 xs:w-12 xs:h-14 sm:w-14 sm:h-16 text-xl xs:text-2xl sm:text-3xl text-center rounded-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 outline-none transition-all duration-200 shadow-md font-bold tracking-widest ${num
-                            ? "animate-pulse border-blue-400 bg-blue-50"
-                            : "bg-blue-50"
+                          ? "animate-pulse border-blue-400 bg-blue-50"
+                          : "bg-blue-50"
                           }`}
                         style={{
                           transition: "box-shadow 0.2s, border-color 0.2s, background 0.2s",
