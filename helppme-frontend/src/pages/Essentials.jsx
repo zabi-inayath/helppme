@@ -1,11 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 function Essentials() {
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
   const menuRef = useRef(null); // Reference for the SOS menu
+
+  // Count visitor on mount
+  useEffect(() => {
+    axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/helppme/website-visitors`).catch(() => { });
+  }, []);
 
   // Function to close menu when clicking outside
   useEffect(() => {

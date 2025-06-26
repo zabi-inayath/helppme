@@ -6,6 +6,7 @@ const http = require("http");
 const { Server } = require("socket.io");
 const serviceRoutes = require("./routes/serviceRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const visitorCounts = require("./routes/visitorRoutes");
 const pool = require("./models/service");
 const pool1 = require("./models/admin");
 
@@ -43,6 +44,7 @@ app.use(bodyParser.json());
 // API Routes
 app.use("/api/services", serviceRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/helppme", visitorCounts);
 
 // Root Route
 app.get("/", (req, res) => {
