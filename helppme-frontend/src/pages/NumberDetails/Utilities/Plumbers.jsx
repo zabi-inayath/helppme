@@ -11,6 +11,7 @@ import {
   Phone,
   ChevronRight
 } from "lucide-react";
+import { callCount } from "../../../store/callCountApi";
 
 function Plumbers() {
   const { id } = useParams();
@@ -128,6 +129,7 @@ function Plumbers() {
                 />
                 <a
                   href={`tel:${contact.phone}`}
+                  onClick={(e) => callCount(e, contact)}
                   className="flex items-center space-x-2 bg-blue-100 text-blue-600 px-3 py-1.5 rounded-lg"
                 >
                   <img
@@ -237,19 +239,12 @@ function Plumbers() {
               {/* Call Button */}
               <a
                 href={`tel:${selectedContact.phone}`}
+                onClick={(e) => callCount(e, selectedContact)}
                 className="block text-center w-full bg-blue-600 text-white py-2 rounded-lg text-lg hover:bg-blue-700 transition flex justify-center items-center gap-2"
               >
                 <Phone className="w-5 h-5" />
                 Call
               </a>
-
-              {/* Optional Close Button (if needed) */}
-              {/* <button
-                      className="mt-4 text-center text-sm text-gray-500 hover:text-gray-700 w-full"
-                      onClick={() => setSelectedContact(null)}
-                    >
-                      Close
-                    </button> */}
             </motion.div>
           </div>
         )}

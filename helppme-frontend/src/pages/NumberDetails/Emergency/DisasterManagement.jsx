@@ -4,6 +4,7 @@ import { useUserStore } from "../../../store/useUserStore";
 import { MutatingDots } from "react-loader-spinner";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Clock3, LayoutGrid, Settings, Phone } from "lucide-react";
+import { callCount } from "../../../store/callCountApi";
 
 function DisasterManagement() {
   const { id } = useParams();
@@ -117,18 +118,7 @@ function DisasterManagement() {
                 />
                 <a
                   href={`tel:${contact.phone}`}
-                  onClick={async (e) => {
-                    // Handle call count update
-                    console.log("Call button clicked for contact:", contact.name);
-                    try {
-                      await axios.post(
-                        `${import.meta.env.VITE_BACKEND_URL}/api/services/call/${contact.id}`
-                      );
-                      // Optionally: toast.success("Call count updated!");
-                    } catch (err) {
-                      // Optionally: toast.error("Failed to update call count");
-                    }
-                  }}
+                  onClick={(e) => callCount(e, contact)}
                   className="flex items-center space-x-2 bg-blue-100 text-blue-600 px-3 py-1.5 rounded-lg"
                 >
                   <img
@@ -240,18 +230,7 @@ function DisasterManagement() {
               {/* Call Button */}
               <a
                 href={`tel:${selectedContact.phone}`}
-                onClick={async (e) => {
-                  // Handle call count update
-                  console.log("Call button clicked for contact:", selectedContact.name);
-                  try {
-                    await axios.post(
-                      `${import.meta.env.VITE_BACKEND_URL}/api/services/call/${selectedContact.id}`
-                    );
-                    // Optionally: toast.success("Call count updated!");
-                  } catch (err) {
-                    // Optionally: toast.error("Failed to update call count");
-                  }
-                }}
+                onClick={(e) => callCount(e, selectedContact)}
                 className="block text-center w-full bg-blue-600 text-white py-2 rounded-lg text-lg hover:bg-blue-700 transition flex justify-center items-center gap-2"
               >
                 <Phone className="w-5 h-5" />

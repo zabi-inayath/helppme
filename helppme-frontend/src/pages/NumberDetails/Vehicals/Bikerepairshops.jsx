@@ -11,6 +11,7 @@ import {
   LayoutGrid,
   Settings
 } from "lucide-react";
+import { callCount } from "../../../store/callCountApi";
 
 function Bikerepairshops() {
   const { id } = useParams();
@@ -131,6 +132,7 @@ function Bikerepairshops() {
                 />
                 <a
                   href={`tel:${contact.phone}`}
+                  onClick={(e) => callCount(e, contact)}
                   className="flex items-center space-x-2 bg-blue-100 text-blue-600 px-3 py-1.5 rounded-lg"
                 >
                   <img
@@ -243,6 +245,7 @@ function Bikerepairshops() {
                     {/* Call Button */}
                     <a
                       href={`tel:${selectedContact.phone}`}
+                      onClick={(e) => callCount(e, selectedContact)}
                       className="block text-center w-full bg-blue-600 text-white py-2 rounded-lg text-lg hover:bg-blue-700 transition flex justify-center items-center gap-2"
                     >
                       <Phone className="w-5 h-5" />
@@ -333,6 +336,7 @@ function Bikerepairshops() {
                   {/* Call Button */}
                   <a
                     href={`tel:${selectedContact.phone}`}
+                    onClick={(e) => callCount(e, selectedContact)}
                     className="block text-center w-full bg-blue-600 text-white py-2 rounded-lg text-lg hover:bg-blue-700 transition flex justify-center items-center gap-2"
                   >
                     <Phone className="w-5 h-5" />

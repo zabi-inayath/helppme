@@ -19,8 +19,11 @@ const MobileLayout = ({ children }) => {
           {children}
         </div>
       ) : (
-        <div className="desktop-warning">
-          <h1>This app is only for mobile!</h1>
+          <div className="desktop-warning bg-gradient-to-br from-blue-900/90 via-blue-700/80 to-blue-400/80">
+            <h1 className="text-white">This app is only for mobile for now.</h1>
+            <p className="text-white">
+              Please use a mobile device to access the app.
+            </p>
         </div>
       )}
     </>
