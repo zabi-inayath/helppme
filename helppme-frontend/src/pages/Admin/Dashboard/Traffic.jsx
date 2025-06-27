@@ -35,11 +35,11 @@ const Traffic = () => {
             .catch(() => setVisitorData([]));
     }, [range]);
 
-    // Prepare chart data with formatted date and sort by date ascending
     // Prepare chart data (ascending order for chart)
     const chartData = callData
         .map((row) => ({
             ...row,
+            call_count: Number(row.call_count || 0),
             formattedDate: row.date
                 ? new Date(row.date).toLocaleDateString("en-GB", {
                     day: "2-digit",
@@ -57,6 +57,7 @@ const Traffic = () => {
     const visitorChartData = visitorData
         .map((row) => ({
             ...row,
+            visitor_count: Number(row.visitor_count || 0),
             formattedDate: row.date
                 ? new Date(row.date).toLocaleDateString("en-GB", {
                     day: "2-digit",
@@ -70,6 +71,11 @@ const Traffic = () => {
     // Prepare visitor table data (reverse for newest first)
     const visitorTableData = [...visitorChartData].reverse();
 
+    // Calculate total visitor count for the selected range
+    const totalVisitorCount = visitorChartData.reduce(
+        (sum, row) => sum + (Number(row.visitor_count) || 0),
+        0
+    );
 
     return (
         <div className="p-6 min-h-screen bg-gradient-to-br from-blue-50">
@@ -90,6 +96,9 @@ const Traffic = () => {
                     <h3 className="text-xl font-semibold text-gray-800">
                         Website Visitors
                     </h3>
+                    <span className="text-3xl font-bold text-green-600 bg-green-50 px-4 py-2 rounded-lg shadow">
+                        {totalVisitorCount}
+                    </span>
                 </div>
                 <ResponsiveContainer width="100%" height={340}>
                     <LineChart data={visitorChartData}>
@@ -185,14 +194,6 @@ const Traffic = () => {
                         </tbody>
                     </table>
                 </div>
-
-              
-            </div>
-            {/* Date Range Buttons */}
-            <div className="mb-4 flex gap-2">
-                <button onClick={() => setRange('7')} className={`px-3 py-1 rounded ${range === '7' ? 'bg-blue-500 text-white' : 'bg-blue-100 text-blue-700'}`}>7 Days</button>
-                <button onClick={() => setRange('30')} className={`px-3 py-1 rounded ${range === '30' ? 'bg-blue-500 text-white' : 'bg-blue-100 text-blue-700'}`}>30 Days</button>
-                <button onClick={() => setRange('90')} className={`px-3 py-1 rounded ${range === '90' ? 'bg-blue-500 text-white' : 'bg-blue-100 text-blue-700'}`}>90 Days</button>
             </div>
 
             {/* Chart Card: Call Count */}
@@ -297,7 +298,6 @@ const Traffic = () => {
                                 ))
                             )}
                         </tbody>
-
                     </table>
                 </div>
             </div>

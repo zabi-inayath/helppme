@@ -2,7 +2,6 @@ import { axiosInstance } from "../lib/axios.js";
 
 export const callCount = async (e, contact) => {
     // Optionally prevent default if needed
-    // e.preventDefault();
     if (!contact || !contact.id) return;
     try {
         await axiosInstance.post(
@@ -11,5 +10,6 @@ export const callCount = async (e, contact) => {
         // Optionally: toast.success("Call count updated!");
     } catch (err) {
         // Optionally: toast.error("Failed to update call count");
+        console.error("Error updating call count:", err);
     }
 }
