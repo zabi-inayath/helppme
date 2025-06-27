@@ -96,7 +96,7 @@ const Traffic = () => {
                     <h3 className="text-xl font-semibold text-gray-800">
                         Website Visitors
                     </h3>
-                    <span className="text-3xl font-bold text-green-600 bg-green-50 px-4 py-2 rounded-lg shadow">
+                    <span className="text-3xl font-bold text-blue-600 bg-blue-50 px-4 py-2 rounded-lg shadow">
                         {totalVisitorCount}
                     </span>
                 </div>
@@ -104,20 +104,20 @@ const Traffic = () => {
                     <LineChart data={visitorChartData}>
                         <defs>
                             <linearGradient id="colorVisitor" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="#34D399" stopOpacity={0.8} />
-                                <stop offset="95%" stopColor="#34D399" stopOpacity={0.1} />
+                                <stop offset="5%" stopColor="#0175F3" stopOpacity={0.8} />
+                                <stop offset="95%" stopColor="#0175F3" stopOpacity={0.1} />
                             </linearGradient>
                         </defs>
                         <CartesianGrid strokeDasharray="3 3" vertical={false} />
                         <XAxis
                             dataKey="formattedDate"
-                            tick={{ fontSize: 13, fill: "#64748b" }}
+                            tick={{ fontSize: 13, fill: "#0175F3" }}
                             axisLine={false}
                             tickLine={false}
                         />
                         <YAxis
                             allowDecimals={false}
-                            tick={{ fontSize: 13, fill: "#64748b" }}
+                            tick={{ fontSize: 13, fill: "#0175F3" }}
                             axisLine={false}
                             tickLine={false}
                         />
@@ -129,7 +129,7 @@ const Traffic = () => {
                                 border: "none",
                                 color: "#222"
                             }}
-                            labelStyle={{ fontWeight: 600, color: "#34D399" }}
+                            labelStyle={{ fontWeight: 600, color: "#0175F3" }}
                             labelFormatter={(label) =>
                                 label
                                     ? label
@@ -141,7 +141,7 @@ const Traffic = () => {
                             type="monotone"
                             dataKey="visitor_count"
                             name="Visitor Count"
-                            stroke="#34D399"
+                            stroke="#0175F3"
                             strokeWidth={3}
                             dot={{ r: 5, stroke: "#fff", strokeWidth: 2 }}
                             activeDot={{ r: 8 }}
